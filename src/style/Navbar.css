@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    background-color: tan;
+}
+
+#logo {
+    font-size: 32px;
+    width: 200px;
+    margin-left: 20px;
+}
+
+#categories {
+    margin-right: 5px;
+}
+
+#searchbar {
+    height: 32px;
+    font-size: 24px;
+    width: 30vw;
+    margin-right: 5px;
+}
+
+#navbar > button {
+    height: 32px;
+    width: 100px;
+}
+
+#navbar > button:hover{
+    cursor: pointer;
+}
+
+#search-button {
+    margin-right: auto;
+}
+
+.navbar-button {
+    margin-right: 100px;
+}
+
+#profile-dropdown {
+    display: flex;
+    width: 100px;
+    align-items: center;
+    position: absolute;
+    right: 300px;
+    padding: 5px;
+    flex-direction: column;
+    border: solid black 2px;
+}
+
+#cart-dropdown {
+    display: flex;
+    width: 100px;
+    align-items: center;
+    position: absolute;
+    right: 500px;
+    padding: 5px;
+    flex-direction: column;
+    border: solid black 2px;
+}
+
+#menu-dropdown {
+    display: flex;
+    width: 100px;
+    align-items: center;
+    position: absolute;
+    right: 100px;
+    padding: 5px;
+    flex-direction: column;
+    border: solid black 2px;
+}
+
+#categories-dropdown {
+    display: flex;
+    width: 100px;
+    align-items: center;
+    position: absolute;
+    left: 220px;
+    padding: 5px;
+    flex-direction: column;
+    border: solid black 2px;
+}
+
+#profile-dropdown > span, #cart-dropdown > span, #menu-dropdown > span, #categories-dropdown > span {
+    margin: 5px 0;
+}
+
+#profile-dropdown > span:hover, #cart-dropdown > span:hover, #menu-dropdown > span:hover, #categories-dropdown > span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

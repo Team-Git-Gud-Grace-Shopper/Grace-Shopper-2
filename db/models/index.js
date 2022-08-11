@@ -11,7 +11,3 @@ module.exports = {
 // and use its database connectors
 // ie User.getUserById(), where user.js had a module.exports
 // that looked like this: module.exports = { getUserById, ... }
-
-
-
-
