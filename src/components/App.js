@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from '../axios-services';
 import '../style/App.css';
+import { ProductListings } from '.';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
@@ -23,11 +24,16 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app-container">
-      <h1>Hello, World!</h1>
-      <p>API Status: {APIHealth}</p>
-    </div>
+    <Fragment>
+      <div className="app-container">
+        <h1>Hello, me!</h1>
+        <p>API Status: {APIHealth}</p>
+      </div>
+      <ProductListings/>
+    </Fragment>
   );
 };
 
 export default App;
+
+
