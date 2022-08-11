@@ -21,9 +21,7 @@ async function createProduct({ title, description, price }) {
       [title, description, price]
     );
 
-    // const tagList = await createTags(tags);
-
-    // return await addTagsToProduct(product.id, tagList);
+    
     return products;
   } catch (error) {
     throw error;
@@ -53,28 +51,6 @@ async function updateProducts(productId, fields = {}) {
       );
     }
 
-    // return early if there's no tags to update
-    // if (tags === undefined) {
-    //   return await getProductById(productId);
-    // }
-
-    // make any new tags that need to be made
-    // const tagList = await createTags(tags);
-    // const tagListIdString = tagList.map(
-    //   tag => `${ tag.id }`
-    // ).join(', ');
-
-    // delete any post_tags from the database which aren't in that tagList
-    // await client.query(`
-    //   DELETE FROM product_tags
-    //   WHERE "tagId"
-    //   NOT IN (${ tagListIdString })
-    //   AND "productId"=$1;
-    // `, [productId]);
-
-    // // and create post_tags as necessary
-    // await addTagsToProduct(productId, tagList);
-
     return await getProductById(productId);
   } catch (error) {
     throw error;
@@ -90,9 +66,7 @@ async function getAllProducts() {
         FROM products;
       `);
 
-    // const allProducts = await Promise.all(productIds.map(
-    //   product => getProductById( product.id )
-    // ));
+    
 
     return products;
   } catch (error) {
@@ -113,12 +87,7 @@ async function getProductById(productId) {
       [productId]
     );
 
-    // const { rows: tags } = await client.query(`
-    //   SELECT tags.*
-    //   FROM tags
-    //   JOIN product_tags ON tags.id=product_tags."tagId"
-    //   WHERE product_tags."productId"=$1;
-    // `, [productId])
+    
 
     const {
       rows: [users],
@@ -131,7 +100,7 @@ async function getProductById(productId) {
       [product.authorId]
     );
 
-    // product.tags = tags;
+    
     product.author = author;
 
     delete product.authorId;
