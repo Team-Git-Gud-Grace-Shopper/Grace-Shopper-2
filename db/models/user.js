@@ -1,7 +1,7 @@
 // grab our db client connection to use with our adapters
 const client = require('../client');
 
-const { Client } = require('pg') // imports the pg module
+
 
 module.exports = {
   // add your database adapter fns here
@@ -14,12 +14,12 @@ module.exports = {
 
 async function getAllUsers() {
   try {
-    const { rows } = await client.query(`
-      SELECT id, username, name, email
+    const { rows: [users] } = await client.query(`
+      SELECT id, username, email
       FROM users;
     `);
 
-    return rows;
+    return users;
   } catch (error) {
     throw error;
   }
@@ -28,16 +28,15 @@ async function getAllUsers() {
 async function createUser({ 
   username, 
   password,
-  name,
   email
 }) {
   try {
     const { rows: [ user ] } = await client.query(`
-      INSERT INTO users(username, password, name, email) 
-      VALUES($1, $2, $3, $4) 
+      INSERT INTO users(username, password, email) 
+      VALUES($1, $2, $3 ) 
       ON CONFLICT (username) DO NOTHING 
       RETURNING *;
-    `, [username, password, name, email]);
+    `, [username, password, email]);
 
     return user;
   } catch (error) {
@@ -73,7 +72,7 @@ async function updateUser(id, fields = {}) {
 async function getUserById(userId) {
   try {
     const { rows: [ user ] } = await client.query(`
-      SELECT id, username, name, email
+      SELECT id, username, email
       FROM users
       WHERE id=${ userId }
     `);
