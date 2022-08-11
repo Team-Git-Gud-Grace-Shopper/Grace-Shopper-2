@@ -9,7 +9,7 @@ module.exports = {
 // and use its database connectors
 // ie User.getUserById(), where user.js had a module.exports
 // that looked like this: module.exports = { getUserById, ... }
-const { Client } = require('pg') // imports the pg module
+const { client } = require('pg') // imports the pg module
 
 // async function getProductsByTagName(tagName) {
 //   try {
@@ -107,20 +107,20 @@ const { Client } = require('pg') // imports the pg module
 // }
 
 
-module.exports = {  
-  client,
-  createUser,
-  updateUser,
-  getAllUsers,
-  getUserById,
-  createProduct,
-  updateProduct,
-  getAllProducts,
-  getProductsByUser,
-  // getProductsByTagName,
-  // createTags,
-  // getAllTags,
-  // createProductTag,
-  // addTagsToProduct,
-  getUserByUsername
-}
+// module.exports = {  
+//   client,
+//   createUser,
+//   updateUser,
+//   getAllUsers,
+//   getUserById,
+//   createProduct,
+//   updateProduct,
+//   getAllProducts,
+//   getProductsByUser,
+//   // getProductsByTagName,
+//   // createTags,
+//   // getAllTags,
+//   // createProductTag,
+//   // addTagsToProduct,
+//   getUserByUsername
+// }

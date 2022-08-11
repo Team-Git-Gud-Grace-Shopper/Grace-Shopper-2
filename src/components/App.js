@@ -4,7 +4,10 @@ import React, { useState, useEffect, Fragment } from 'react';
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from '../axios-services';
 import '../style/App.css';
-import { ProductListings } from '.';
+import { 
+  ProductListings,
+  Navbar
+} from '.';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
@@ -25,6 +28,7 @@ const App = () => {
 
   return (
     <Fragment>
+      <Navbar/>
       <div className="app-container">
         <h1>Hello, me!</h1>
         <p>API Status: {APIHealth}</p>
