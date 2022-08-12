@@ -27,3 +27,13 @@ export async function getAPIHealth() {
     return { healthy: false };
   }
 }
+
+export async function getProducts() {
+  try {
+    const response = await axios.get('/api/products');
+    console.log(response)
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
