@@ -21,7 +21,6 @@ async function createProduct({ title, description, price }) {
       [title, description, price]
     );
 
-    
     return products;
   } catch (error) {
     throw error;
@@ -59,16 +58,12 @@ async function updateProducts(productId, fields = {}) {
 
 async function getAllProducts() {
   try {
-    const {
-      rows: [products],
-    } = await client.query(`
+    const { rows } = await client.query(`
         SELECT *
         FROM products;
       `);
 
-    
-
-    return products;
+    return rows;
   } catch (error) {
     throw error;
   }
@@ -87,8 +82,6 @@ async function getProductById(productId) {
       [productId]
     );
 
-    
-
     const {
       rows: [users],
     } = await client.query(
@@ -100,7 +93,6 @@ async function getProductById(productId) {
       [product.authorId]
     );
 
-    
     product.author = author;
 
     delete product.authorId;
