@@ -1,6 +1,5 @@
 const client = require("../client");
 
-// const { Client } = require('pg') // imports the pg module
 
 module.exports = {
   createProduct,
@@ -69,39 +68,39 @@ async function getAllProducts() {
   }
 }
 
-async function getProductById(productId) {
-  try {
-    const {
-      rows: [product],
-    } = await client.query(
-      `
-        SELECT *
-        FROM products
-        WHERE id=$1;
-      `,
-      [productId]
-    );
+// async function getProductById(productId) {
+//   try {
+//     const {
+//       rows: [product],
+//     } = await client.query(
+//       `
+//         SELECT *
+//         FROM products
+//         WHERE id=$1;
+//       `,
+//       [productId]
+//     );
 
-    const {
-      rows: [users],
-    } = await client.query(
-      `
-        SELECT id, username, name, email
-        FROM users
-        WHERE id=$1;
-      `,
-      [product.authorId]
-    );
+//     const {
+//       rows: [users],
+//     } = await client.query(
+//       `
+//         SELECT id, username, name, email
+//         FROM users
+//         WHERE id=$1;
+//       `,
+//       [product.authorId]
+//     );
 
-    product.author = author;
+//     product.author = author;
 
-    delete product.authorId;
+//     delete product.authorId;
 
-    return product;
-  } catch (error) {
-    throw error;
-  }
-}
+//     return product;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 // async function getProductsByUser(userId) {
 //   try {
