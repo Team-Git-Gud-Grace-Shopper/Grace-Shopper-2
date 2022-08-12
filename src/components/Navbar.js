@@ -14,6 +14,8 @@ const Navbar = () =>{
         }
     }
 
+    // is it working
+
     const renderDropDown = () => {
         switch (dropDown){
             default:
