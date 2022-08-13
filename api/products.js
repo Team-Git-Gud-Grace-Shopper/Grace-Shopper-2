@@ -8,7 +8,9 @@ apiRouter.get('/', async (req, res, next) =>{
         const products = await Products.getAllProducts();
 
         res.send(products);
+
         console.log("these are the products:", products)
+        
     } catch ({name, message}) {
       console.error(error)
       next ({name, message})  

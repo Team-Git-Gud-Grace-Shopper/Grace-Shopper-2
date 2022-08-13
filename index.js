@@ -1,7 +1,6 @@
 // This is the Web Server
 const express = require("express");
 const server = express();
-
 // enable cross-origin resource sharing to proxy api requests
 // from localhost:3000 to localhost:4000 in local dev env
 const cors = require("cors");
@@ -17,6 +16,15 @@ server.use(express.static(path.join(__dirname, "build")));
 // here's our API
 server.use("/api", require("./api"));
 // by default serve up the react app if we don't recognize the route
+
+server.use((req, res, next) => {
+  console.log("<____Body Logger START____>");
+  console.log(req.body);
+  console.log("<_____Body Logger END_____>");
+
+  next();
+});
+
 server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
