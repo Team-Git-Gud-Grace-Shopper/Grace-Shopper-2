@@ -14,6 +14,7 @@ import {
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
+  const [singleProduct, setSingleProduct] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -35,6 +36,9 @@ const App = () => {
   }, [])
 
   return (
+
+
+
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
@@ -52,6 +56,7 @@ const App = () => {
         </Route>
       </Switch>
     </BrowserRouter>
+
   );
 };
 

@@ -37,3 +37,13 @@ export async function getProducts() {
     throw error;
   }
 }
+
+export async function getSingleProduct() {
+  try {
+    const response = await axios.get('/api/products/:id');
+    console.log('This is a single product:', response);
+    return response;
+  } catch (error) {
+    
+  }
+}
