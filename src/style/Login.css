@@ -1,0 +1,44 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 20vh;
+    height: fit-content;
+    width: 30vw;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 0 auto;
+}
+
+#login > span {
+    margin-bottom: 30px;
+}
+
+#login > input {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+#login > button {
+    margin: 20px 0;
+    font-size: 32px;
+}
+
+#header {
+    font-size: 48px;
+}
+
+#register-login {
+    font-size: 16px;
+}
+
+#register-login:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+button:hover {
+    cursor: pointer;
+}

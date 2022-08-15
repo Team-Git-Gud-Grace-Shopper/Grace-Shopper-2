@@ -9,7 +9,8 @@ module.exports = {
   createUser,
   updateUser,
   getUserById,
-  getUserByUsername
+  getUserByUsername,
+  getUser
 };
 
 async function getAllUsers() {
@@ -96,6 +97,20 @@ async function getUserByUsername(username) {
       FROM users
       WHERE username=$1;
     `, [username]);
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUser(username, password) {
+  try {
+    const { rows: [user] } = await client.query(`
+      SELECT username, password
+      FROM users
+      WHERE username=$1 AND password=$2;
+    `, [username, password]);
 
     return user;
   } catch (error) {
