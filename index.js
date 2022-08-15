@@ -18,14 +18,6 @@ server.use("/api", require("./api"));
 // by default serve up the react app if we don't recognize the route
 
 server.use((req, res, next) => {
-  console.log("<____Body Logger START____>");
-  console.log(req.body);
-  console.log("<_____Body Logger END_____>");
-
-  next();
-});
-
-server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 // bring in the DB connection

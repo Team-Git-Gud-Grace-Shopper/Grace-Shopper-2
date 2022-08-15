@@ -12,6 +12,7 @@ import {
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
+  const [singleProduct, setSingleProduct] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -40,7 +41,9 @@ const App = () => {
         <p>API Status: {APIHealth}</p>
       </div>
       <ProductListings
-        productList= {productList}/>
+        productList= {productList}
+        singleProduct = {singleProduct}
+        setSingleProduct = {setSingleProduct}/>
     </Fragment>
   );
 };

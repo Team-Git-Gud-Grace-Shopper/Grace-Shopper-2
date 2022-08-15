@@ -9,7 +9,7 @@ apiRouter.get('/', async (req, res, next) =>{
 
         res.send(products);
 
-        console.log("these are the products:", products)
+        // console.log("these are the products:", products)
         
     } catch ({name, message}) {
       console.error(error)
@@ -18,12 +18,13 @@ apiRouter.get('/', async (req, res, next) =>{
 })
 
 
-apiRouter.get('/product', async (req, res, next) => {
+apiRouter.get('/:id', async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const product = await Products.getProductById(id);
-
-    res.send(product);
+    
+    res.send(product)
+    console.log("this is single product", product)
     
   } catch (error) {
     throw (error)
