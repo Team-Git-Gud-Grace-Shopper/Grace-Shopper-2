@@ -74,3 +74,16 @@ export async function register(newUser) {
     throw error;
   }
 }
+
+export async function login(username, password) {
+  try {
+    const response = await axios.get('api/users/login', {
+      username: username,
+      password: password
+    });
+    console.log(response)
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
