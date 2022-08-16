@@ -29,6 +29,7 @@ const Login = () => {
     }
 
     console.log(test)
+
     return (
         <div id="login">
             {isRegistering?

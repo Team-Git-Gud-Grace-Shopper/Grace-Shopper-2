@@ -5,6 +5,9 @@ const { User } = require("../db");
 
 // POST /api/users/register
 
+
+
+
 apiRouter.post("/register", async (req, res, next) => {
   try {
     const { username, password, email } = req.body;

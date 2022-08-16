@@ -50,7 +50,7 @@ export async function getSingleProduct() {
 
 export async function getAllUsers() {
   try {
-    const response = await axios.get('/api/user');
+    const response = await axios.get('/api/users');
     console.log(response)
     return response;
   } catch (error) {
@@ -60,7 +60,7 @@ export async function getAllUsers() {
 
 export async function register(newUser) {
   try {
-    const response = await axios.post('/api/user', {
+    const response = await axios.post('/api/users', {
       username: newUser.username,
       password: newUser.password,
       email: newUser.email
