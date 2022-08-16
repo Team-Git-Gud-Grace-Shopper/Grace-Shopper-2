@@ -47,3 +47,27 @@ export async function getSingleProduct() {
     
   }
 }
+
+export async function getAllUsers() {
+  try {
+    const response = await axios.get('/api/user');
+    console.log(response)
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function register(newUser) {
+  try {
+    const response = await axios.post('/api/user', {
+      username: newUser.username,
+      password: newUser.password,
+      email: newUser.email
+    });
+    console.log(response)
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
