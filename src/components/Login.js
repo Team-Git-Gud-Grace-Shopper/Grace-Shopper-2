@@ -2,23 +2,43 @@ import React, { Fragment, useState } from "react";
 
 import '../style/Login.css';
 
+import { register, getAllUsers } from "../axios-services";
+
 const Login = () => {
-    const [isRegistering, setIsRegistering] = useState(false);
+    const [isRegistering, setIsRegistering] = useState(true);
 
     const handleClick = async (event) => {
         event.preventDefault();
         setIsRegistering(!isRegistering);
     }
 
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const newUser = {
+            email: document.getElementById('email').value,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        }
+        await register(newUser)
+        .then((result) => {console.log(result)})
+    }
+
+    const test = async () => {
+        await getAllUsers()
+        .then((result) => {console.log(result)})
+    }
+
+    console.log(test)
     return (
         <div id="login">
             {isRegistering?
                 <Fragment>
                     <span id="header">Create Account</span>
+                    <input id="email" placeholder="Email Address"></input>
                     <input id="username" placeholder="New Username"></input>
                     <input id="password" placeholder="New Password"></input>
                     <input id="confirm-password" placeholder="Confirm Password"></input>
-                    <button>Create Account</button>
+                    <button onClick={handleRegister}>Create Account</button>
                     <span id='register-login' onClick={handleClick}>Already have an account? Log in</span>
                 </Fragment>:
                 <Fragment>
