@@ -23,12 +23,6 @@ const Login = () => {
         .then((result) => {console.log(result)})
     }
 
-    const test = async () => {
-        await getAllUsers()
-        .then((result) => {console.log(result)})
-    }
-
-    console.log(test)
     return (
         <div id="login">
             {isRegistering?
