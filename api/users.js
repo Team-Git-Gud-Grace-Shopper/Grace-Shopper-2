@@ -2,7 +2,7 @@ const apiRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET = "nftSecret" } = process.env;
 const { User } = require("../db");
-const { getAllUsers } = require("../db/models/users");
+const { getAllUsers, } = require("../db/models/users");
 
 apiRouter.get('/', async (req, res, next) =>{
   try {
@@ -15,6 +15,19 @@ apiRouter.get('/', async (req, res, next) =>{
   } catch ({name, message}) {
     console.error(error)
     next ({name, message})  
+  }
+})
+
+apiRouter.get('/login', async (req, res, next) => {
+  try {
+    const {username, password} = req.body;
+    console.log('username: ' + username)
+    console.log('password: ' + password)
+    const user = await User.getUser(username, password);
+    res.send(user)
+    console.log(user)
+  } catch (error) {
+    throw error;
   }
 })
 
