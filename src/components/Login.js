@@ -2,10 +2,11 @@ import React, { Fragment, useState } from "react";
 
 import '../style/Login.css';
 
-import { register, getAllUsers } from "../axios-services";
+import { register, login } from "../axios-services";
 
 const Login = () => {
     const [isRegistering, setIsRegistering] = useState(true);
+    const [currentUser, setCurrentUser] = useState(null);
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -23,6 +24,14 @@ const Login = () => {
         .then((result) => {console.log(result)})
     }
 
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        await login(username, password)
+        .then((result) => {setCurrentUser(result)})
+    }
+console.log('current user: ' + currentUser)
     return (
         <div id="login">
             {isRegistering?
@@ -39,7 +48,7 @@ const Login = () => {
                     <span id='header'>Login</span>
                     <input id='username' placeholder="Enter Username"></input>
                     <input id="password" placeholder="Enter Password"></input>
-                    <button>Login</button>
+                    <button onClick={handleLogin}>Login</button>
                     <span id="register-login" onClick={handleClick}>New user? Create an account</span>
                 </Fragment>
             }
