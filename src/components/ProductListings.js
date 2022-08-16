@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import '../style/ProductListings.css';
 
 const ProductListings = ({productList}) => {
-console.log(productList)
+// console.log(productList)
     const history = useHistory();
     return (
         <div>
