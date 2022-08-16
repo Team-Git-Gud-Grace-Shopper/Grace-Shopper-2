@@ -15,12 +15,12 @@ module.exports = {
 
 async function getAllUsers() {
   try {
-    const { rows: [users] } = await client.query(`
-      SELECT id, username, email
+    const { rows } = await client.query(`
+      SELECT *
       FROM users;
     `);
 
-    return users;
+    return rows;
   } catch (error) {
     throw error;
   }
