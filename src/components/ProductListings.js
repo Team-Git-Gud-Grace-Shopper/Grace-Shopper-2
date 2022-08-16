@@ -1,10 +1,10 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 import '../style/ProductListings.css';
 
-const ProductListings = ({productList, singleProduct, setSingleProduct}) => {
-console.log(productList)
-    
+const ProductListings = ({productList}) => {
+// console.log(productList)
+    const history = useHistory();
     return (
         <div>
             {productList.map(product => (
@@ -14,7 +14,7 @@ console.log(productList)
                     <span className="listingtext">{product.price}</span>
                     <span className="listingtext">{product.description}</span>
                     <button>Add to cart</button>
-                    <button>View product details</button>
+                    <button onClick={() => history.push(`/products/${product.id}`)}>View product details</button>
                 </div>
             ))}
         </div>
