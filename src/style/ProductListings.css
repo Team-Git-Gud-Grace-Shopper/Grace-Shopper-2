@@ -6,13 +6,22 @@
     padding: 10px;
     border: solid black 2px;
     font-size: 32px;
-}
-
-.listing-photo {
-    height: 30vh;
+  }
+  
+  .listing-photo {
+    height: 40vh;
     border: solid black 2px;
-}
-
-.listing > span {
+  }
+  
+  .listing > span {
     margin-bottom: 24px;
-}
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .movelisting {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70%;
+  }

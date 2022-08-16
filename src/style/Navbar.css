@@ -1,71 +1,74 @@
-*{
+* {
     box-sizing: border-box;
-}
-
-#navbar {
+  }
+  
+  #navbar {
     display: flex;
     align-items: center;
     height: 5vh;
     background-color: tan;
-}
-
-#logo {
+  }
+  
+  #logo {
+    text-decoration: none;
     font-size: 32px;
     width: 200px;
     margin-left: 20px;
-}
-
-#categories {
+    color: black;
+  }
+  
+  #categories {
     margin-right: 5px;
-}
-
-#searchbar {
+  }
+  
+  #searchbar {
     height: 32px;
     font-size: 24px;
     width: 30vw;
-    margin-right: 5px;
-}
-
-#navbar > button {
+    margin-right: 7px;
+    margin-left: 20%;
+  }
+  
+  #navbar > button {
     height: 32px;
     width: 100px;
-}
-
-#navbar > button:hover{
+  }
+  
+  #navbar > button:hover {
     cursor: pointer;
-}
-
-#search-button {
+  }
+  
+  #search-button {
     margin-right: auto;
-}
-
-.navbar-button {
+  }
+  
+  .navbar-button {
     margin-right: 100px;
-}
-
-#profile-dropdown {
+  }
+  
+  #profile-dropdown {
     display: flex;
     width: 100px;
     align-items: center;
     position: absolute;
-    right: 300px;
+    right: 85px;
     padding: 5px;
     flex-direction: column;
     border: solid black 2px;
-}
-
-#cart-dropdown {
+  }
+  
+  #cart-dropdown {
     display: flex;
     width: 100px;
     align-items: center;
     position: absolute;
-    right: 500px;
+    right: 285px;
     padding: 5px;
     flex-direction: column;
     border: solid black 2px;
-}
-
-#menu-dropdown {
+  }
+  
+  #menu-dropdown {
     display: flex;
     width: 100px;
     align-items: center;
@@ -74,9 +77,9 @@
     padding: 5px;
     flex-direction: column;
     border: solid black 2px;
-}
-
-#categories-dropdown {
+  }
+  
+  #categories-dropdown {
     display: flex;
     width: 100px;
     align-items: center;
@@ -85,13 +88,19 @@
     padding: 5px;
     flex-direction: column;
     border: solid black 2px;
-}
-
-#profile-dropdown > span, #cart-dropdown > span, #menu-dropdown > span, #categories-dropdown > span {
+  }
+  
+  #profile-dropdown > span,
+  #cart-dropdown > span,
+  #menu-dropdown > span,
+  #categories-dropdown > span {
     margin: 5px 0;
-}
-
-#profile-dropdown > span:hover, #cart-dropdown > span:hover, #menu-dropdown > span:hover, #categories-dropdown > span:hover {
+  }
+  
+  #profile-dropdown > span:hover,
+  #cart-dropdown > span:hover,
+  #menu-dropdown > span:hover,
+  #categories-dropdown > span:hover {
     cursor: pointer;
     text-decoration: underline;
-}
+  }

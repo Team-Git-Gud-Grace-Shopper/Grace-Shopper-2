@@ -8,13 +8,14 @@ import '../style/App.css';
 import { 
   ProductListings,
   Navbar,
-  Login
+  Login,
+  SingleProductView
 } from '.';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
-  const [singleProduct, setSingleProduct] = useState([]);
+  // const [singleProduct, setSingleProduct] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -54,6 +55,7 @@ const App = () => {
           <Navbar/>
           <Login/>
         </Route>
+        <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
       </Switch>
     </BrowserRouter>
 

@@ -31,7 +31,7 @@ export async function getAPIHealth() {
 export async function getProducts() {
   try {
     const response = await axios.get('/api/products');
-    console.log(response)
+    // console.log(response)
     return response;
   } catch (error) {
     throw error;
