@@ -10,7 +10,7 @@ apiRouter.get('/', async (req, res, next) =>{
 
       res.send(users);
 
-      // console.log("these are the products:", products)
+      
       
   } catch ({name, message}) {
     console.error(error)
@@ -19,8 +19,6 @@ apiRouter.get('/', async (req, res, next) =>{
 })
 
 // POST /api/users/register
-
-
 
 
 apiRouter.post("/register", async (req, res, next) => {
