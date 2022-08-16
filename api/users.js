@@ -2,6 +2,21 @@ const apiRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET = "nftSecret" } = process.env;
 const { User } = require("../db");
+const { getAllUsers } = require("../db/models/users");
+
+apiRouter.get('/', async (req, res, next) =>{
+  try {
+      const users = await User.getAllUsers();
+
+      res.send(users);
+
+      // console.log("these are the products:", products)
+      
+  } catch ({name, message}) {
+    console.error(error)
+    next ({name, message})  
+  }
+})
 
 // POST /api/users/register
 
