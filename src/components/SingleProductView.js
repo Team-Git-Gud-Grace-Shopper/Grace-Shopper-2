@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style/ProductListings.css";
-import { Navbar } from ".";
 
 const SingleProductView = ({ productList }) => {
   // console.log("this is product list in single product view:", productList)
@@ -24,7 +23,7 @@ const SingleProductView = ({ productList }) => {
 
   return (
     <div>
-      <Navbar />
+      
       {singleProduct && singleProduct.id ? (
         <div className="listing">
           <img className="listing-photo" alt="?"></img>
