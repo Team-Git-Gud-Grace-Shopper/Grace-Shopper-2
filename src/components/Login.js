@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 
+
 import '../style/Login.css';
 
 import { register, login } from "../axios-services";
@@ -36,14 +37,22 @@ const Login = () => {
 
 
     const handleLogin = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        await login(username, password)
-        .then((result) => {setCurrentUser(result)})
-    }
-        console.log('current user: ' + currentUser)
+        const user = await login(username, password)
 
+        setCurrentUser(user)
+        
+        console.log("this is current user", currentUser)
+        
+        // .then((result) => {setCurrentUser(result)})
+        
+        // console.log("this is result", result)
+    }
+    
+    // console.log('current user: ' + currentUser)
+    
     return (
         <div id="login">
             {isRegistering?
