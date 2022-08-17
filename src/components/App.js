@@ -38,21 +38,22 @@ const App = () => {
 
   return (
 
-
+    
 
     <BrowserRouter>
+    <Navbar/>
       <Switch>
         <Route exact path='/'>
-          <Navbar></Navbar>
+          
           <div className="app-container">
-            <h1>Hello, me!</h1>
+            <h1>Welcome to Camel Cases</h1>
             <p>API Status: {APIHealth}</p>
           </div>
           <ProductListings
             productList= {productList}/>
         </Route>
         <Route path='/login'>
-          <Navbar/>
+          
           <Login/>
         </Route>
         <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
