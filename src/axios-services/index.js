@@ -28,6 +28,15 @@ export async function getAPIHealth() {
   }
 }
 
+export async function checkSession() {
+  try {
+    const response = await axios.get('/api/');
+    console.log(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getProducts() {
   try {
     const response = await axios.get("/api/products");
@@ -74,18 +83,6 @@ export async function register(newUser) {
       email: newUser.email,
     });
     console.log(response);
-    return response;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getAllUsers() {
-  try {
-    const response = await axios.get('/api/users');
-
-    console.log(response)
-
     return response;
   } catch (error) {
     throw error;
