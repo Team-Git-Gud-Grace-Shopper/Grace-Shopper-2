@@ -26,34 +26,6 @@ async function createProduct({ title, description, price }) {
   }
 }
 
-// async function updateProducts(productId, fields = {}) {
-//   // const { tags } = fields; // might be undefined
-//   // delete fields.tags;
-
-//   // build the set string
-//   const setString = Object.keys(fields)
-//     .map((key, index) => `"${key}"=$${index + 1}`)
-//     .join(", ");
-
-//   try {
-//     // update any fields that need to be updated
-//     if (setString.length > 0) {
-//       await client.query(
-//         `
-//           UPDATE products
-//           SET ${setString}
-//           WHERE id=${productId}
-//           RETURNING *;
-//         `,
-//         Object.values(fields)
-//       );
-//     }
-
-//     return await getProductById(productId);
-//   } catch (error) {
-//     throw error;
-//   }
-// }
 
 async function getAllProducts() {
   try {

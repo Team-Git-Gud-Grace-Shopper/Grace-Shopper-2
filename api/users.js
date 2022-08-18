@@ -1,5 +1,6 @@
 const apiRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
+const { token } = require("morgan");
 const { JWT_SECRET = "nftSecret" } = process.env;
 const { User } = require("../db");
 const { getAllUsers } = require("../db/models/users");
@@ -15,20 +16,49 @@ apiRouter.get("/", async (req, res, next) => {
   }
 });
 
-
-
 apiRouter.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    next({
+      name: "MissingCredentialsError",
+      message: "Please supply both a username and password",
+    });
+  }
+
   try {
-    const { username, password } = req.body;
-    console.log("username: " + username);
-    console.log("password: " + password);
-    const user = await User.getUser(username, password);
-    res.send(user);
-    console.log(user);
+    const user = await User.getUserByUsername(username);
+
+    if (user && user.password === password) {
+      const token = jwt.sign({ id: user.id, username }, JWT_SECRET);
+
+      res.send({ user, message: "you're logged in!", token });
+    } else {
+      next({
+        name: "IncorrectCredentialsError",
+        message: "Username or password is incorrect",
+      });
+    }
   } catch (error) {
-    throw error;
+    console.log(error);
+    next(error);
   }
 });
+
+
+// apiRouter.post("/login", async (req, res, next) => {
+//   try {
+//     const { username, password } = req.body;
+//     console.log("username: " + username);
+//     console.log("password: " + password);
+//     const user = await User.getUser(username, password);
+    
+//     res.send(user);
+//     console.log(user);
+//   } catch (error) {
+//     throw error;
+//   }
+// });
 
 // POST /api/users/register
 
