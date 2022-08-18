@@ -11,8 +11,6 @@ const ProductListings = ({productList}) => {
                 <div className="listing" key={product.id}>
                     <img className='listing-photo' alt="?"></img>
                     <span className="listingtext">{product.title}</span>
-                    <span className="listingtext">{product.price}</span>
-                    <span className="listingtext">{product.description}</span>
                     <button>Add to cart</button>
                     <button onClick={() => history.push(`/products/${product.id}`)}>View product details</button>
                 </div>
