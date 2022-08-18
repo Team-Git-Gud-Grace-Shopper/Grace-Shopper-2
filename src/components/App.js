@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAPIHealth, getProducts } from '../axios-services';
+import { checkSession, getAPIHealth, getProducts } from '../axios-services';
 import '../style/App.css';
 import { 
   ProductListings,
@@ -30,6 +30,14 @@ const App = () => {
     // invoke it immediately after its declaration, inside the useEffect callback
     getAPIStatus();
   }, []);
+
+  useEffect(() => {
+    const sessionCheck = async () => {
+      const session = await checkSession()
+      .then((result) => {console.log(result)});
+    };
+    sessionCheck();
+  })
 
   useEffect(() => {
     getProducts()

@@ -1,4 +1,5 @@
 const apiRouter = require("express").Router();
+const session = require('express-session');
 
 apiRouter.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -6,6 +7,21 @@ apiRouter.use((req, res, next) => {
   console.log("<_____Body Logger END_____>");
 
   next();
+});
+
+apiRouter.use(
+  session({
+      secret: "shhh its a secret",
+      resave: false,
+      saveUninitialized: false
+  })
+);
+
+apiRouter.get("/", (req, res) => {
+  console.log(req.session); 
+  console.log('The actual session id: ', req.sessionID);
+  req.session.viewCount += 1; 
+  res.send(`View count at ${req.session.viewCount}`);
 });
 
 apiRouter.get("/", (req, res, next) => {
