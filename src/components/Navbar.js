@@ -12,7 +12,7 @@ const Navbar = () => {
       setDropDown(event.target.id);
     }
   };
-
+  
   const renderDropDown = () => {
     switch (dropDown) {
       default:
@@ -22,7 +22,6 @@ const Navbar = () => {
       case "profile":
         return (
           <div id="profile-dropdown">
-            {" "}
             <Link to="/profile">View Profile</Link>
             <Link to="/login">Logout</Link>
             <Link to="/login">Login</Link>

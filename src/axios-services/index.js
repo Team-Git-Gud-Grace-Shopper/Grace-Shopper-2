@@ -80,6 +80,18 @@ export async function register(newUser) {
   }
 }
 
+export async function getAllUsers() {
+  try {
+    const response = await axios.get('/api/users');
+
+    console.log(response)
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function login(username, password) {
   try {
     const response = await axios.post("api/users/login", {
