@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 // this file holds your frontend network request adapters
 // think about each function as a service that provides data
@@ -20,7 +20,7 @@ import axios from 'axios';
 
 export async function getAPIHealth() {
   try {
-    const { data } = await axios.get('/api/health');
+    const { data } = await axios.get("/api/health");
     return data;
   } catch (err) {
     console.error(err);
@@ -28,9 +28,27 @@ export async function getAPIHealth() {
   }
 }
 
+export async function checkSession() {
+  try {
+    const response = await axios.get('/api/');
+    console.log(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getProducts() {
   try {
-    const response = await axios.get('/api/products');
+    const response = await axios.get("/api/products");
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getCart() {
+  try {
+    const response = await axios.get("/api/cart");
     return response;
   } catch (error) {
     throw error;
@@ -39,19 +57,17 @@ export async function getProducts() {
 
 export async function getSingleProduct() {
   try {
-    const response = await axios.get('/api/products/:id');
-    console.log('This is a single product:', response);
+    const response = await axios.get("/api/products/:id");
+    console.log("This is a single product:", response);
     return response;
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 }
 
 export async function getAllUsers() {
   try {
-    const response = await axios.get('/api/users');
+    const response = await axios.get("/api/users");
 
-    console.log(response)
+    console.log(response);
 
     return response;
   } catch (error) {
@@ -61,14 +77,12 @@ export async function getAllUsers() {
 
 export async function register(newUser) {
   try {
-
-    const response = await axios.post('/api/users/register', {
-
+    const response = await axios.post("/api/users/register", {
       username: newUser.username,
       password: newUser.password,
-      email: newUser.email
+      email: newUser.email,
     });
-    console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
     throw error;
@@ -77,11 +91,11 @@ export async function register(newUser) {
 
 export async function login(username, password) {
   try {
-    const response = await axios.post('api/users/login', {
+    const response = await axios.post("api/users/login", {
       username: username,
-      password: password
+      password: password,
     });
-    // console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
     throw error;

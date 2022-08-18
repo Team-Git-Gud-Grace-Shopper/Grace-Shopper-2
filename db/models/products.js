@@ -33,7 +33,7 @@ async function getAllProducts() {
         SELECT *
         FROM products;
       `);
-console.log("This is firing")
+
     return rows;
   } catch (error) {
     throw error;

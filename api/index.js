@@ -1,5 +1,5 @@
-
-const apiRouter = require('express').Router();
+const apiRouter = require("express").Router();
+const session = require('express-session');
 
 apiRouter.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -9,26 +9,42 @@ apiRouter.use((req, res, next) => {
   next();
 });
 
-apiRouter.get('/', (req, res, next) => {
+apiRouter.use(
+  session({
+      secret: "shhh its a secret",
+      resave: false,
+      saveUninitialized: false
+  })
+);
+
+apiRouter.get("/", (req, res) => {
+  console.log(req.session); 
+  console.log('The actual session id: ', req.sessionID);
+  req.session.viewCount += 1; 
+  res.send(`View count at ${req.session.viewCount}`);
+});
+
+apiRouter.get("/", (req, res, next) => {
   res.send({
-    message: 'API is under construction!',
+    message: "API is under construction!",
   });
 });
 
-apiRouter.get('/health', (req, res, next) => {
+apiRouter.get("/health", (req, res, next) => {
   res.send({
     healthy: true,
   });
 });
 
-
-
 // place your routers here
 
-const productsRouter = require('./products');
-apiRouter.use('/products', productsRouter)
+const productsRouter = require("./products");
+apiRouter.use("/products", productsRouter);
 
-const userRouter = require('./users');
-apiRouter.use('/users', userRouter)
+const userRouter = require("./users");
+apiRouter.use("/users", userRouter);
+
+const cartRouter = require("./cart");
+apiRouter.use("/cart", cartRouter);
 
 module.exports = apiRouter;
