@@ -8,13 +8,14 @@ import '../style/App.css';
 import { 
   ProductListings,
   Navbar,
-  Login
+  Login,
+  SingleProductView
 } from '.';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
-  const [singleProduct, setSingleProduct] = useState([]);
+  // const [singleProduct, setSingleProduct] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -37,23 +38,25 @@ const App = () => {
 
   return (
 
-
+    
 
     <BrowserRouter>
+    <Navbar/>
       <Switch>
         <Route exact path='/'>
-          <Navbar></Navbar>
+          
           <div className="app-container">
-            <h1>Hello, me!</h1>
+            <h1>Welcome to Camel Cases</h1>
             <p>API Status: {APIHealth}</p>
           </div>
           <ProductListings
             productList= {productList}/>
         </Route>
         <Route path='/login'>
-          <Navbar/>
+          
           <Login/>
         </Route>
+        <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
       </Switch>
     </BrowserRouter>
 
