@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-
+import { useHistory } from "react-router-dom";
 import '../style/Login.css';
 
 import { register, login } from "../axios-services";
@@ -7,6 +7,7 @@ import { register, login } from "../axios-services";
 const Login = () => {
     const [isRegistering, setIsRegistering] = useState(true);
     const [currentUser, setCurrentUser] = useState(null);
+    const history = useHistory()
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -26,10 +27,16 @@ const Login = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
+        
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         await login(username, password)
-        .then((result) => {setCurrentUser(result.data)})
+        .then((result) => {
+            setCurrentUser(result.data)
+            localStorage.setItem("token", result.data.token);
+            localStorage.setItem("username", username);
+            history.push("/")
+        })
     }
     console.log("this is current user:", currentUser)
 
