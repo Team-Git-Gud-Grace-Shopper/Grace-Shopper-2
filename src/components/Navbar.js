@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({authenticated}) => {
   const [dropDown, setDropDown] = useState("none");
   const handleClick = (event) => {
     event.preventDefault();
@@ -22,9 +22,13 @@ const Navbar = () => {
       case "profile":
         return (
           <div id="profile-dropdown">
-            <Link to="/profile">View Profile</Link>
-            <Link to="/login">Logout</Link>
-            <Link to="/login">Login</Link>
+            {authenticated?
+              <Fragment>
+                <Link to="/profile">View Profile</Link>
+                <Link to="/login">Logout</Link>
+              </Fragment>:
+              <Link to="/login">Login</Link>
+            }
           </div>
         );
       case "cart":
@@ -40,7 +44,7 @@ const Navbar = () => {
     <Fragment>
       <div id="navbar">
         <Link to="/" id="logo">
-          Camel Cases
+          camelCases
         </Link>
         <input id="searchbar" placeholder="Search..."></input>
         <button id="search-button">Search</button>

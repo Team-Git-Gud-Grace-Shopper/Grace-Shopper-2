@@ -16,6 +16,8 @@ import {
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
   // const [singleProduct, setSingleProduct] = useState([]);
 
   useEffect(() => {
@@ -50,12 +52,17 @@ const App = () => {
     
 
     <BrowserRouter>
-    <Navbar/>
+    <Navbar
+      authenticated={authenticated}
+      />
       <Switch>
         <Route exact path='/'>
           
           <div className="app-container">
-            <h1>Welcome to Camel Cases</h1>
+            {authenticated?
+              <h1>Welcome to camelCases, {currentUser.user.username}!</h1>:
+              <h1>Welcome to camelCases!</h1>
+            }
             <p>API Status: {APIHealth}</p>
           </div>
           <ProductListings
@@ -64,7 +71,11 @@ const App = () => {
         <Route path="/cart"><Cart /></Route>
         <Route path='/login'>
           
-          <Login/>
+          <Login
+            setAuthenticated={setAuthenticated}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            />
         </Route>
         <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
       </Switch>

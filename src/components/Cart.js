@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom";
 import { getCart } from "../axios-services";
 
 const Cart = () => {
-  // const [getCart, setGetCart] = useState({});
+  const [cartList, setCartList] = useState([]);
 
   useEffect(() => {
     getCart()
-    .then((result) => console.log(result))
+    .then((result) => setCartList(result.data))
   }, [])
 
-
+console.log(cartList)
   return (
     <Fragment>
       <h3>This is the cart page, theres nothing to see here... yet</h3>

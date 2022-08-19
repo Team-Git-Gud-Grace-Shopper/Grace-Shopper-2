@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 import '../style/Login.css';
 import { register, login } from "../axios-services";
 
-const Login = () => {
-    const [isRegistering, setIsRegistering] = useState(true);
-    const [currentUser, setCurrentUser] = useState(null);
+const Login = ({setAuthenticated, currentUser, setCurrentUser}) => {
+    const [isRegistering, setIsRegistering] = useState(false);
     const history = useHistory()
 
     const handleClick = async (event) => {
@@ -22,6 +21,7 @@ const Login = () => {
         }
         await register(newUser)
         .then((result) => {console.log(result)})
+        setAuthenticated(true);
     }
 
     const handleLogin = async (event) => {
@@ -34,6 +34,7 @@ const Login = () => {
             setCurrentUser(result.data)
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("username", username);
+            setAuthenticated(true);
             history.push("/")
         })
     }

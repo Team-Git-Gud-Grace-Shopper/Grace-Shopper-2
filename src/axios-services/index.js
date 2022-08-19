@@ -61,9 +61,9 @@ export async function getCart() {
   }
 }
 
-export async function getSingleProduct() {
+export async function getSingleProduct(id) {
   try {
-    const response = await axios.get("/api/products/:id");
+    const response = await axios.get(`/api/products/${id}`);
     console.log("This is a single product:", response);
     return response;
   } catch (error) {}

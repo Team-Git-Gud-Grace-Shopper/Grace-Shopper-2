@@ -1,10 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { addItemToCart, getSingleProduct } from "../axios-services";
 import "../style/ProductListings.css";
 
 const ProductListings = ({ productList }) => {
-  // console.log(productList)
   const history = useHistory();
+
+  const handleAddItem = async (event) => {
+    event.preventDefault();
+    console.log(event.target.id)
+    const item = await getSingleProduct(event.target.id);
+    console.log(item)
+    console.log(item.data)
+    addItemToCart(item.data, 1);
+  }
+
   return (
     <div>
       {productList.map((product) => (
@@ -13,7 +23,7 @@ const ProductListings = ({ productList }) => {
           <span className="listingtext">{product.title}</span>
           <span className="listingtext">{product.price}</span>
           <span className="listingtext">{product.description}</span>
-          <button>Add to cart</button>
+          <button id={product.id} onClick={handleAddItem}>Add to cart</button>
           <button onClick={() => history.push(`/products/${product.id}`)}>
             View product details
           </button>
