@@ -31,14 +31,13 @@ const Login = ({setAuthenticated, currentUser, setCurrentUser}) => {
         const password = document.getElementById('password').value;
         await login(username, password)
         .then((result) => {
-            setCurrentUser(result.data)
-            localStorage.setItem("token", result.data.token);
-            localStorage.setItem("username", username);
+            setCurrentUser(result.data.user)
+            sessionStorage.setItem("token", result.data.token);
+            sessionStorage.setItem("username", username);
             setAuthenticated(true);
             history.push("/")
         })
     }
-    console.log("this is current user:", currentUser)
 
     return (
         <div id="login">
