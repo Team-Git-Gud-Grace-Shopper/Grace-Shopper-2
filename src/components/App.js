@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { checkSession, getAPIHealth, getProducts } from '../axios-services';
 import '../style/App.css';
 import { 
+  Cart,
   ProductListings,
   Navbar,
   Login,
@@ -60,6 +61,7 @@ const App = () => {
           <ProductListings
             productList= {productList}/>
         </Route>
+        <Route path="/cart"><Cart /></Route>
         <Route path='/login'>
           
           <Login/>
