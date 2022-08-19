@@ -54,20 +54,3 @@ async function getProductById(id) {
   }
 }
 
-// async function getProductsByUser(userId) {
-//   try {
-//     const { rows: productIds } = await client.query(`
-//       SELECT id
-//       FROM products
-//       WHERE "authorId"=${ userId };
-//     `);
-
-//     const products = await Promise.all(productIds.map(
-//       product => getProductById( product.id )
-//     ));
-
-//     return products;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
