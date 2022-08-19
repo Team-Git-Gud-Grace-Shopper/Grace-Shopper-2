@@ -23,7 +23,6 @@ export async function getAPIHealth() {
 export async function checkSession() {
   try {
     const response = await axios.get('/api/');
-    console.log(response);
   } catch (error) {
     throw error;
   }
@@ -81,6 +80,17 @@ export async function getAllUsers() {
   }
 }
 
+export async function checkCurrentUser(username) {
+  try {
+    const response = await axios.post('/api/users', {
+      username: username
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function register(newUser) {
   try {
     const response = await axios.post("/api/users/register", {
@@ -101,7 +111,6 @@ export async function login(username, password) {
       username: username,
       password: password,
     });
-    console.log(response);
     return response;
   } catch (error) {
     throw error;

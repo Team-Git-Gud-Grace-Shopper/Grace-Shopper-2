@@ -2,8 +2,9 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated}) => {
+const Navbar = ({authenticated, setAuthenticated, setCurrentUser}) => {
   const [dropDown, setDropDown] = useState("none");
+
   const handleClick = (event) => {
     event.preventDefault();
     if (dropDown === event.target.id) {
@@ -12,6 +13,14 @@ const Navbar = ({authenticated}) => {
       setDropDown(event.target.id);
     }
   };
+
+  const handleLogOut = (event) => {
+    event.preventDefault();
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    setCurrentUser(null);
+    setAuthenticated(false);
+  }
   
   const renderDropDown = () => {
     switch (dropDown) {
@@ -25,7 +34,7 @@ const Navbar = ({authenticated}) => {
             {authenticated?
               <Fragment>
                 <Link to="/profile">View Profile</Link>
-                <Link to="/login">Logout</Link>
+                <Link to="/login" onClick={handleLogOut}>Logout</Link>
               </Fragment>:
               <Link to="/login">Login</Link>
             }
