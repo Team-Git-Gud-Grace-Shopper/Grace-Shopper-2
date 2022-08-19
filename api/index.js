@@ -24,6 +24,12 @@ apiRouter.get("/", (req, res) => {
   res.send(`View count at ${req.session.viewCount}`);
 });
 
+apiRouter.get("/logout", (req, res, next) => {
+  req.session.destroy(() => {
+      console.log("Session has been destroyed.")
+  })
+});
+
 apiRouter.get("/", (req, res, next) => {
   res.send({
     message: "API is under construction!",
@@ -44,7 +50,7 @@ apiRouter.use("/products", productsRouter);
 const userRouter = require("./users");
 apiRouter.use("/users", userRouter);
 
-const cartRouter = require("./cart");
-apiRouter.use("/cart", cartRouter);
+const cartsRouter = require("./cart");
+apiRouter.use("/cart", cartsRouter);
 
 module.exports = apiRouter;
