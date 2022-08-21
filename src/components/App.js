@@ -59,7 +59,7 @@ const App = () => {
     else {
       setAuthenticated(false);
     }
-  })
+  }, [currentUser])
 
   return (
 

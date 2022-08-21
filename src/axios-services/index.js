@@ -7,7 +7,10 @@ import axios from "axios";
 // for example, if we need to display a list of users
 // we'd probably want to define a getUsers service like this:
 
+//PATCH cart request updating quantity product === id
+//update to number being passed
 
+//DELETE id that === cart ID
 
 
 export async function getAPIHealth() {
@@ -23,6 +26,7 @@ export async function getAPIHealth() {
 export async function checkSession() {
   try {
     const response = await axios.get('/api/');
+    return response
   } catch (error) {
     throw error;
   }

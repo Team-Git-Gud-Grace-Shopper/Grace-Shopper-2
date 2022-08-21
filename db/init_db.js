@@ -51,7 +51,8 @@ async function buildTables() {
       id SERIAL PRIMARY KEY,
       "productId" INTEGER REFERENCES products(id),
       "priceAtPurchase" DECIMAL (5,2),
-      "cartId" INTEGER REFERENCES cart_orders(id)
+      "cartId" INTEGER REFERENCES cart_orders(id),
+      quantity INTEGER
     );
     
     `);
@@ -65,9 +66,7 @@ async function buildTables() {
 async function populateInitialData() {
   console.log("Starting to create users...");
   try {
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-    // const user1 = await User.createUser({ ...user info goes here... })
+    
     const user1 = await User.createUser({
       username: "nftshopper",
       password: "itssecret123",

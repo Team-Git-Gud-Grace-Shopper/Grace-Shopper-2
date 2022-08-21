@@ -10,8 +10,8 @@ const ProductListings = ({ productList }) => {
     event.preventDefault();
     console.log(event.target.id)
     const item = await getSingleProduct(event.target.id);
-    console.log(item)
-    console.log(item.data)
+    // console.log(item)
+    // console.log(item.data)
     addItemToCart(item.data, 1);
   }
 
