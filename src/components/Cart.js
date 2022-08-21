@@ -25,7 +25,7 @@ console.log("this is cartList items", cartList.items)
           <span className="listingtext">{item.item.description}</span>
           <button>Remove from cart</button>
         </div>
-      )) : "There is nothing for you here"}</h3>
+      )) : "Your cart is empty! Get back to shopping!"}</h3>
         
           
         
