@@ -16,7 +16,7 @@ console.log("this is cartList items", cartList.items)
 
   return (
     <Fragment>
-      <h3>{cartList.items ? 
+      {cartList.items ? 
       cartList.items.map((item, id) => (
         <div className="listing" key={id}>
           <img className="listing-photo" alt="?"></img>
@@ -25,7 +25,7 @@ console.log("this is cartList items", cartList.items)
           <span className="listingtext">{item.item.description}</span>
           <button>Remove from cart</button>
         </div>
-      )) : "Your cart is empty! Get back to shopping!"}</h3>
+      )) : <h3>Your cart is empty! Get back to shopping!</h3>}
         
           
         
