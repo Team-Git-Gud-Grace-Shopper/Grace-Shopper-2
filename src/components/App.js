@@ -91,7 +91,8 @@ const App = () => {
         <Route path="/cart"><Cart
             authenticated={authenticated}
             currentUser={currentUser}
-            cartList={cartList}/></Route>
+            cartList={cartList}
+            setCartList={setCartList}/></Route>
         <Route path='/login'>
           
           <Login

@@ -15,7 +15,7 @@ async function buildTables() {
 
     console.log("Dropping all tables....");
     await client.query(`
-      DROP TABLE IF EXISTS individual_cart_items;
+      DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS cart_orders;
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
@@ -49,7 +49,7 @@ async function buildTables() {
 
     CREATE TABLE cart_items (
       "productId" INTEGER REFERENCES products(id),
-      "cartId" INTEGER REFERENCES cart_orders(id),
+      "cartId" INTEGER REFERENCES cart_orders(id)
 
     );
     
