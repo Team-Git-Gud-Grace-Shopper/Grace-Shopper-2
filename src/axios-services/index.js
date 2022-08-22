@@ -54,9 +54,11 @@ export async function addItemToCart(item, quantity) {
   }
 }
 
-export async function getCart() {
+export async function getCart(userId) {
   try {
-    const response = await axios.get("/api/cart/items");
+    const response = await axios.post("/api/cart/", {
+      userId: userId
+    });
     console.log("This is get cart response", response)
     return response;
   } catch (error) {
@@ -68,7 +70,7 @@ export async function getSingleProduct(id) {
   try {
     const response = await axios.get(`/api/products/${id}`);
     console.log("This is a single product:", response);
-    return response;
+    return response.data;
   } catch (error) {}
 }
 

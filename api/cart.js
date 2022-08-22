@@ -2,13 +2,39 @@ const { request } = require('express')
 const cartsRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET = "nftSecret" } = process.env;
-const { User } = require("../db");
+const { Cart } = require("../db");
+const {getCart} = require("../db/models/cart");
 
 
 cartsRouter.use((req, res, next) => {
   console.log('You have hit cartsRouter');
   next(); 
 });
+
+
+// cartsRouter.get("/cart", async (req, res, next) => {
+//   try {
+//     const cart = await Products.getCart();
+
+//     res.send(cart);
+
+//     console.log("these are the products:", products)
+//   } catch ({ name, message }) {
+//     console.error(error);
+//     next({ name, message });
+//   }
+// });
+
+cartsRouter.post('/', async (req, res) => {
+  console.log("hitting the api portion")
+  const {userId} = req.body;
+  try {
+    const carts = await Cart.getCart(userId);
+    res.send(carts);
+  } catch (error) {
+    throw error;
+  }
+})
 
 
 cartsRouter.get("/items", (req, res) => {
