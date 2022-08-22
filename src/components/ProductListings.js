@@ -3,16 +3,17 @@ import { useHistory } from "react-router-dom";
 import { addItemToCart, getSingleProduct } from "../axios-services";
 import "../style/ProductListings.css";
 
-const ProductListings = ({ productList }) => {
+const ProductListings = ({ productList, cartList, setCartList }) => {
   const history = useHistory();
 
   const handleAddItem = async (event) => {
     event.preventDefault();
-    console.log(event.target.id)
-    const item = await getSingleProduct(event.target.id);
-    console.log(item)
-    console.log(item.data)
-    addItemToCart(item.data, 1);
+    const arr = cartList;
+    console.log(arr)
+    const itemToAdd = await getSingleProduct(event.target.id);
+    arr.push(itemToAdd);
+    sessionStorage.setItem('cart', JSON.stringify(arr));
+    setCartList(JSON.parse(sessionStorage.cart));
   }
 
   return (

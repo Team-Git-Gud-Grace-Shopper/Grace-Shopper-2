@@ -47,11 +47,9 @@ async function buildTables() {
       "orderStatus" TEXT DEFAULT 'Pending' NOT NULL
     );
 
-    CREATE TABLE individual_cart_items (
-      id SERIAL PRIMARY KEY,
+    CREATE TABLE cart_items (
       "productId" INTEGER REFERENCES products(id),
-      "priceAtPurchase" DECIMAL (5,2),
-      "cartId" INTEGER REFERENCES cart_orders(id)
+      "cartId" INTEGER REFERENCES cart_orders(id),
     );
     
     `);

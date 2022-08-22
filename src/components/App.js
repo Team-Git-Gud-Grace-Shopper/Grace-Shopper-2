@@ -19,10 +19,9 @@ const App = () => {
   const [productList, setProductList] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [cartList, setCartList] = useState([]);
   // const [singleProduct, setSingleProduct] = useState([]);
-  console.log("this is current user:", currentUser)
-  console.log("This is the user stored in session storage: " + sessionStorage.username)
-
+  console.log(cartList)
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
     // first, create an async function that will wrap your axios service adapter
@@ -43,8 +42,6 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    console.log('is this firing?')
-    console.log("in useEffect, here's what's getting passed: " + sessionStorage.username)
     if (sessionStorage.username){
       checkCurrentUser(sessionStorage.username)
       .then((result) => {setCurrentUser(result.data)})
@@ -52,7 +49,6 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    ("Is last one firing?")
     if (currentUser){
       setAuthenticated(true);
     }
@@ -60,6 +56,12 @@ const App = () => {
       setAuthenticated(false);
     }
   })
+
+  useEffect(() => {
+    if(sessionStorage.cart){
+      setCartList(JSON.parse(sessionStorage.cart))
+    }
+  }, [])
 
   return (
 
@@ -82,9 +84,14 @@ const App = () => {
             <p>API Status: {APIHealth}</p>
           </div>
           <ProductListings
-            productList= {productList}/>
+            productList= {productList}
+            cartList={cartList}
+            setCartList={setCartList}/>
         </Route>
-        <Route path="/cart"><Cart /></Route>
+        <Route path="/cart"><Cart
+            authenticated={authenticated}
+            currentUser={currentUser}
+            cartList={cartList}/></Route>
         <Route path='/login'>
           
           <Login
