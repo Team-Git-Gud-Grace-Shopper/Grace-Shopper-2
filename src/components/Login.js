@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { useHistory } from "react-router-dom";
 import '../style/Login.css';
-import { register, login } from "../axios-services";
+import { register, login, getCart } from "../axios-services";
 
-const Login = ({setAuthenticated, currentUser, setCurrentUser}) => {
+const Login = ({setAuthenticated, currentUser, setCurrentUser, setCartList}) => {
     const [isRegistering, setIsRegistering] = useState(false);
     const history = useHistory()
 
@@ -34,9 +34,10 @@ const Login = ({setAuthenticated, currentUser, setCurrentUser}) => {
             setCurrentUser(result.data.user)
             sessionStorage.setItem("token", result.data.token);
             sessionStorage.setItem("username", username);
-            setAuthenticated(true);
-            history.push("/")
-        })
+        });
+        setAuthenticated(true);
+        history.push("/")
+        
     }
 
     return (

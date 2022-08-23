@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { getCart, getSingleProduct } from "../axios-services";
-import "../style/ProductListings.css";
-
+import "../style/Cart.css";
 
 const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
 
@@ -24,8 +24,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
           <span className="listingtext">{item.description}</span>
           <button onClick={handleRemoveItem}>Remove from cart</button>
         </div>
-      )) : <h1 style={{textAlign: "center", marginTop: "4em"}}>Your cart is empty! Get back to shopping!</h1>}
-        
+      )) : <h3>Your cart is empty! Get back to shopping!</h3>}
     </Fragment>
   );
 };
