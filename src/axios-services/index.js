@@ -37,14 +37,14 @@ export async function getProducts() {
   }
 }
 
-export async function addItemToCart(item, quantity) {
+export async function addItemToCart(productId, userId) {
   try {
-    const response = await axios.post("/api/cart/items", {
-      item: item,
-      quantity: quantity
+    const response = await axios.post("/api/cart/add", {
+      productId: productId,
+      userId: userId
     });
     console.log("This is add item response", response);
-    return response;
+    return response.data;
   } catch (error) {
     throw error
   }

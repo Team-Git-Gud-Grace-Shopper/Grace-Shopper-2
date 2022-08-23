@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { checkCurrentUser, checkSession, getAPIHealth, getProducts } from '../axios-services';
+import { checkCurrentUser, checkSession, getAPIHealth, getCart, getProducts } from '../axios-services';
 import '../style/App.css';
 import { 
   Cart,
@@ -17,11 +17,10 @@ import {
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [cartList, setCartList] = useState([]);
-  // const [singleProduct, setSingleProduct] = useState([]);
-  console.log(cartList)
+  
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
     // first, create an async function that will wrap your axios service adapter
@@ -49,7 +48,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if (currentUser){
+    if (sessionStorage.username){
       setAuthenticated(true);
     }
     else {
@@ -58,20 +57,28 @@ const App = () => {
   })
 
   useEffect(() => {
-    if(sessionStorage.cart){
+    console.log("yup")
+    if (authenticated){
+      getCart(currentUser.id)
+      .then((result) => {
+        console.log( "This is the useeffect call result: " + result.data);
+        setCartList(result.data);
+        sessionStorage.setItem('cart', JSON.stringify(result.data));
+      });
+    }
+    else if (sessionStorage.cart){
       setCartList(JSON.parse(sessionStorage.cart))
     }
-  }, [])
+  }, [authenticated, currentUser])
+console.log(cartList)
 
   return (
-
-    
-
     <BrowserRouter>
     <Navbar
       authenticated={authenticated}
       setAuthenticated={setAuthenticated}
       setCurrentUser={setCurrentUser}
+      setCartList={setCartList}
       />
       <Switch>
         <Route exact path='/'>
@@ -86,7 +93,9 @@ const App = () => {
           <ProductListings
             productList= {productList}
             cartList={cartList}
-            setCartList={setCartList}/>
+            setCartList={setCartList}
+            authenticated={authenticated}
+            currentUser={currentUser}/>
         </Route>
         <Route path="/cart"><Cart
             authenticated={authenticated}
@@ -98,6 +107,7 @@ const App = () => {
             setAuthenticated={setAuthenticated}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            setCartList={setCartList}
             />
         </Route>
         <Route path='/products/:id'><SingleProductView productList={productList}/></Route>

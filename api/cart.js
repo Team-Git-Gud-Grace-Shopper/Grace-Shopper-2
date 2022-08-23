@@ -35,12 +35,13 @@ cartsRouter.post('/', async (req, res) => {
   }
 })
 
-cartsRouter.get("/items", (req, res) => {
-  const { cart } = req.session;
-  if (!cart) {
-      res.send("No items to display")
-  } else {
-      res.send(cart)
+cartsRouter.post("/add", async (req, res) => {
+  const { productId, userId } = req.body;
+  try {
+    const cartItem = await Cart.createCartItem(productId, userId);
+    res.send(cartItem);
+  } catch (error){
+    throw error;
   }
 })
 

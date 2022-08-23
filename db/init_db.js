@@ -15,10 +15,9 @@ async function buildTables() {
 
     console.log("Dropping all tables....");
     await client.query(`
-      DROP TABLE IF EXISTS individual_cart_items;
-      DROP TABLE IF EXISTS cart_orders;
-      DROP TABLE IF EXISTS products;
-      DROP TABLE IF EXISTS users;
+      DROP TABLE IF EXISTS cart_items;
+      DROP TABLE IF EXISTS products CASCADE;
+      DROP TABLE IF EXISTS users CASCADE;
     `);
     console.log("Finished dropping tables");
 
@@ -41,15 +40,9 @@ async function buildTables() {
       price DECIMAL (5,2) 
     );
 
-    CREATE TABLE cart_orders (
-      id SERIAL PRIMARY KEY,
-      "userId" INTEGER REFERENCES users(id),
-      "orderStatus" TEXT DEFAULT 'Pending' NOT NULL
-    );
-
     CREATE TABLE cart_items (
       "productId" INTEGER REFERENCES products(id),
-      "cartId" INTEGER REFERENCES cart_orders(id),
+      "userId" INTEGER REFERENCES users(id)
     );
     
     `);

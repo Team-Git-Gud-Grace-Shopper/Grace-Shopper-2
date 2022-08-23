@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser}) => {
+const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
@@ -18,8 +18,10 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser}) => {
     event.preventDefault();
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('cart');
     setCurrentUser(null);
     setAuthenticated(false);
+    setCartList([]);
   }
   
   const renderDropDown = () => {
