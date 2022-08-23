@@ -57,7 +57,6 @@ const App = () => {
   })
 
   useEffect(() => {
-    console.log("yup")
     if (authenticated){
       getCart(currentUser.id)
       .then((result) => {
@@ -100,7 +99,9 @@ console.log(cartList)
         <Route path="/cart"><Cart
             authenticated={authenticated}
             currentUser={currentUser}
-            cartList={cartList}/></Route>
+            cartList={cartList}
+            setCartList={setCartList}
+            /></Route>
         <Route path='/login'>
           
           <Login

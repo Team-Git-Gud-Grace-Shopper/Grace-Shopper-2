@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { addItemToCart, getSingleProduct } from "../axios-services";
 import "../style/ProductListings.css";
 
 const ProductListings = ({ productList, cartList, setCartList, authenticated, currentUser }) => {
+  const [count, setCount] = useState(0);
   const history = useHistory();
 
   const handleAddItem = async (event) => {
@@ -19,6 +20,14 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
       await addItemToCart(productId, currentUser.id);
     }
   }
+
+  const inc=()=>{
+    setCount(count+1);
+  }
+  const dec=()=>{
+    if(count>0)
+    setCount(count-1);
+  }
  
   return (
     <div>
@@ -29,6 +38,9 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
           <span className="listingtext">{product.price}</span>
           <span className="listingtext">{product.description}</span>
           <button id={product.id} onClick={handleAddItem}>Add to cart</button>
+          <button onClick={inc} >+</button>
+            {count}
+          <button onClick={dec}>-</button>
           <button onClick={() => history.push(`/products/${product.id}`)}>
             View product details
           </button>
