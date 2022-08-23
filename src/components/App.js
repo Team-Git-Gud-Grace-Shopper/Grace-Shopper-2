@@ -10,7 +10,8 @@ import {
   ProductListings,
   Navbar,
   Login,
-  SingleProductView
+  SingleProductView,
+  Checkout
 } from '.';
 
 
@@ -111,6 +112,7 @@ console.log(cartList)
             setCartList={setCartList}
             />
         </Route>
+        <Route path="/checkout"><Checkout /></Route>
         <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
       </Switch>
     </BrowserRouter>
