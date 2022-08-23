@@ -45,6 +45,16 @@ cartsRouter.post("/add", async (req, res) => {
   }
 })
 
+cartsRouter.post("/remove", async (req, res) => {
+  const {productId, userId} = req.body;
+  try {
+    const cartItem = await Cart.removeCartItem(productId, userId);
+    res.send(cartItem);
+  } catch (error) {
+    throw error;
+  }
+})
+
 cartsRouter.post("/items", (req, res, next) => {
   const { item, quantity } = req.body; 
   console.log('This is item + quantity: ', item, quantity)

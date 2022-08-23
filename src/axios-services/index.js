@@ -54,6 +54,19 @@ export async function addItemToCart(productId, userId) {
   }
 }
 
+export async function removeItemFromCart(productId, userId){
+  console.log("what's passed into axios: " + productId + " " + userId)
+  try {
+    const response = await axios.post("/api/cart/remove", {
+      productId: productId,
+      userId: userId
+    });
+    return response;
+  } catch (error){
+    throw error;
+  }
+}
+
 export async function getCart(userId) {
   try {
     const response = await axios.post("/api/cart/", {
