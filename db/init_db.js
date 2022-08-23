@@ -38,7 +38,7 @@ async function buildTables() {
       id SERIAL PRIMARY KEY,
       title VARCHAR(255) UNIQUE NOT NULL,
       description TEXT NOT NULL,
-      price DECIMAL (5,2) 
+      price DECIMAL (5,2)
     );
 
     CREATE TABLE cart_orders (

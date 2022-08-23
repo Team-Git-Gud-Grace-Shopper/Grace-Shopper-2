@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { addItemToCart, getSingleProduct } from "../axios-services";
 import "../style/ProductListings.css";
 
 const ProductListings = ({ productList, cartList, setCartList }) => {
+  const [count, setCount] = useState(0)
   const history = useHistory();
 
   const handleAddItem = async (event) => {
@@ -17,6 +18,16 @@ const ProductListings = ({ productList, cartList, setCartList }) => {
 
   }
 
+  // try like above but try to add quantity, maybe have to write PATCH request to update quantity
+
+    const inc=()=>{
+      setCount(count+1);
+    }
+    const dec=()=>{
+      if(count>0)
+      setCount(count-1);
+    }
+
   return (
     <div>
       {productList.map((product) => (
@@ -26,6 +37,9 @@ const ProductListings = ({ productList, cartList, setCartList }) => {
           <span className="listingtext">{product.price}</span>
           <span className="listingtext">{product.description}</span>
           <button id={product.id} onClick={handleAddItem}>Add to cart</button>
+          <button onClick={inc} >+</button>
+            {count}
+          <button onClick={dec}>-</button>
           <button onClick={() => history.push(`/products/${product.id}`)}>
             View product details
           </button>

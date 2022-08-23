@@ -7,7 +7,7 @@ module.exports = {
   getProductById
 };
 
-async function createProduct({ title, description, price }) {
+async function createProduct({ title, description, price, image }) {
   try {
     const {
       rows: [products],
