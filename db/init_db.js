@@ -15,7 +15,7 @@ async function buildTables() {
 
     console.log("Dropping all tables....");
     await client.query(`
-      DROP TABLE IF EXISTS individual_cart_items;
+      DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS cart_orders;
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
@@ -38,7 +38,7 @@ async function buildTables() {
       id SERIAL PRIMARY KEY,
       title VARCHAR(255) UNIQUE NOT NULL,
       description TEXT NOT NULL,
-      price DECIMAL (5,2) 
+      price DECIMAL (5,2)
     );
 
     CREATE TABLE cart_orders (
@@ -49,7 +49,8 @@ async function buildTables() {
 
     CREATE TABLE cart_items (
       "productId" INTEGER REFERENCES products(id),
-      "cartId" INTEGER REFERENCES cart_orders(id),
+      "cartId" INTEGER REFERENCES cart_orders(id)
+
     );
     
     `);
@@ -63,9 +64,7 @@ async function buildTables() {
 async function populateInitialData() {
   console.log("Starting to create users...");
   try {
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-    // const user1 = await User.createUser({ ...user info goes here... })
+    
     const user1 = await User.createUser({
       username: "nftshopper",
       password: "itssecret123",

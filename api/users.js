@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const { token } = require("morgan");
 const { JWT_SECRET = "nftSecret" } = process.env;
 const { User } = require("../db");
-const { getAllUsers, getUserByUsername } = require("../db/models/users");
+const { getUserByUsername } = require("../db/models/users");
 
 apiRouter.get("/", async (req, res, next) => {
   try {
@@ -45,20 +45,6 @@ apiRouter.post("/login", async (req, res, next) => {
   }
 });
 
-
-// apiRouter.post("/login", async (req, res, next) => {
-//   try {
-//     const { username, password } = req.body;
-//     console.log("username: " + username);
-//     console.log("password: " + password);
-//     const user = await User.getUser(username, password);
-    
-//     res.send(user);
-//     console.log(user);
-//   } catch (error) {
-//     throw error;
-//   }
-// });
 
 // POST /api/users/register
 

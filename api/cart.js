@@ -11,6 +11,7 @@ cartsRouter.use((req, res, next) => {
   next(); 
 });
 
+
 // cartsRouter.get("/cart", async (req, res, next) => {
 //   try {
 //     const cart = await Products.getCart();
@@ -35,6 +36,7 @@ cartsRouter.post('/', async (req, res) => {
   }
 })
 
+
 cartsRouter.get("/items", (req, res) => {
   const { cart } = req.session;
   if (!cart) {
@@ -45,6 +47,9 @@ cartsRouter.get("/items", (req, res) => {
 })
 
 cartsRouter.post("/items", (req, res, next) => {
+  if (req.user) {
+
+  }
   const { item, quantity } = req.body; 
   console.log('This is item + quantity: ', item, quantity)
   const cartItem = { item, quantity };
@@ -63,4 +68,10 @@ cartsRouter.post("/items", (req, res, next) => {
   res.sendStatus(200); 
 })
 
+cartsRouter.post("items")
+
 module.exports = cartsRouter;
+
+
+//authroziation middleware, if logged in then do more stuff
+//if not then keep going with what is there
