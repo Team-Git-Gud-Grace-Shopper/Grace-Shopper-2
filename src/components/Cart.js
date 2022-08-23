@@ -1,5 +1,6 @@
+import session from "express-session";
 import React, { Fragment, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
 import "../style/Cart.css";
 
@@ -17,6 +18,14 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
     }
   }
 
+  const handleCheckout = async (event) => {
+    const arr = cartList
+    const itemToRemove = getSingleProduct(event.target.id);
+    arr.splice(itemToRemove)
+    sessionStorage.removeItem('cart', JSON.stringify(arr));
+    
+  }
+
   return (
     <Fragment>
       {cartList.length ? 
@@ -29,6 +38,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
           <button  id={item.id} onClick={handleRemoveItem}>Remove from cart</button>
         </div>
       )) : <h3>Your cart is empty! Get back to shopping!</h3>}
+      <button className="checkoutbtn" onClick={handleCheckout}><Link to="/checkout">PROCEED TO CHECKOUT</Link></button>
     </Fragment>
   );
 };

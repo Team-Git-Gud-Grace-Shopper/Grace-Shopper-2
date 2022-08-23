@@ -4,3 +4,4 @@ export { default as Navbar } from "./Navbar";
 export { default as Login } from "./Login";
 export { default as SingleProductView } from "./SingleProductView";
 export { default as Cart } from "./Cart";
+export { default as Checkout } from "./Checkout"
