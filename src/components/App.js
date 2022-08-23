@@ -119,5 +119,3 @@ console.log(cartList)
 };
 
 export default App;
-
-
