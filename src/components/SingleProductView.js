@@ -26,7 +26,7 @@ const SingleProductView = ({ productList }) => {
       
       {singleProduct && singleProduct.id ? (
         <div className="single-product">
-          <img className="image" alt="?"></img>
+          <img className="image" src={singleProduct.image} alt="?"></img>
           <h1>{singleProduct.title}</h1>
           <h2>{singleProduct.description}</h2>
           <h3>{singleProduct.price}</h3>

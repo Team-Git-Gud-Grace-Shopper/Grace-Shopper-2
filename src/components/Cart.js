@@ -1,6 +1,6 @@
 import session from "express-session";
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, NavLink } from "react-router-dom";
 import { emptyCart, getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
 import "../style/Cart.css";
 
@@ -34,7 +34,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
       {cartList.length ? 
       cartList.map((item) => (
         <div className="listing" key={item.id}>
-          <img className="listing-photo" alt="?"></img>
+          <img className="listing-photo" src={item.image} alt="?"></img>
           <span className="listingtitle">{item.title}</span>
           <span className="listingprice">{item.price}</span>
           <button className="single-product-btn" id={item.id} onClick={handleRemoveItem}>Remove from cart</button>
