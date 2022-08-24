@@ -23,8 +23,10 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
     }
   }
  
+  
+
   return (
-    <div>
+    <div className="allProducts">
       {productList.map((product) => (
         <div className="listing" key={product.id}>
           <img className="listing-photo" src={product.image} alt="?"></img>

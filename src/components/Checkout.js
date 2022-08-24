@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import "../style/Checkout.css"
 
 const Checkout = () => {
     return (
