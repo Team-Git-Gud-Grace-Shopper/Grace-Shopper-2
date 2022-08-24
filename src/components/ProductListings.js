@@ -29,19 +29,21 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
     setCount(count-1);
   }
  
+  
+
   return (
-    <div>
+    <div className="allProducts">
       {productList.map((product) => (
         <div className="listing" key={product.id}>
           <img className="listing-photo" alt="?"></img>
-          <span className="listingtext">{product.title}</span>
-          <span className="listingtext">{product.price}</span>
-          <span className="listingtext">{product.description}</span>
-          <button id={product.id} onClick={handleAddItem}>Add to cart</button>
+          <span className="listingtitle">{product.title}</span>
+          <span className="listingprice">{product.price}</span>
+          <p>Select Quantity:</p>
           <button onClick={inc} >+</button>
             {count}
           <button onClick={dec}>-</button>
-          <button onClick={() => history.push(`/products/${product.id}`)}>
+          <button className="product-btn"id={product.id} onClick={handleAddItem}>Add to cart</button>
+          <button className="product-btn" onClick={() => history.push(`/products/${product.id}`)}>
             View product details
           </button>
         </div>

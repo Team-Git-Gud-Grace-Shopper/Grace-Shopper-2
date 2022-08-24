@@ -5,13 +5,13 @@
   #navbar {
     display: flex;
     align-items: center;
-    height: 5vh;
+    height: 7vh;
     background-color: tan;
   }
   
   #logo {
     text-decoration: none;
-    font-size: 32px;
+    font-size: 40px;
     width: 200px;
     margin-left: 20px;
     color: black;
@@ -26,7 +26,7 @@
     font-size: 24px;
     width: 30vw;
     margin-right: 7px;
-    margin-left: 20%;
+    margin-left: 5%;
   }
   
   #navbar > button {
@@ -44,6 +44,7 @@
   
   .navbar-button {
     margin-right: 100px;
+    
   }
   
   #profile-dropdown {
@@ -60,7 +61,8 @@
   #cart-dropdown {
     display: flex;
     width: 100px;
-    align-items: center;
+    color: black;
+    /* align-items: center; */
     position: absolute;
     right: 285px;
     padding: 5px;
