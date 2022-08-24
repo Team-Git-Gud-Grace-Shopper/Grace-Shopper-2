@@ -85,7 +85,7 @@ async function populateInitialData() {
     });
     const product2 = await Products.createProduct({
       title: "A Picture of a Camel",
-      description: "It's just camel and it's a picture.",
+      description: "It's just camel and it's a picture. You can't get more simple than that. Just good, clean LEGAL fun.",
       price: "110.99",
     });
     const product3 = await Products.createProduct({

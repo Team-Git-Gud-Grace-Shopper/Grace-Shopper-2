@@ -5,8 +5,7 @@
     justify-content: center;
     position: relative;
     top: 20vh;
-    height: fit-content;
-    width: 30vw;
+    width: 35vw;
     padding: 10px;
     border: 2px solid black;
     margin: 0 auto;
@@ -16,7 +15,9 @@
     margin-bottom: 30px;
 }
 
+
 #login > input {
+    width: 100%;
     margin-bottom: 10px;
     font-size: 32px;
 }
@@ -27,7 +28,7 @@
 }
 
 #header {
-    font-size: 48px;
+    font-size: 40px;
 }
 
 #register-login {

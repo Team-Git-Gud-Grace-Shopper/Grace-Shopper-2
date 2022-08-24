@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../style/ProductListings.css";
+import "../style/SingleProduct.css";
 
 const SingleProductView = ({ productList }) => {
   // console.log("this is product list in single product view:", productList)
@@ -25,11 +25,11 @@ const SingleProductView = ({ productList }) => {
     <div>
       
       {singleProduct && singleProduct.id ? (
-        <div className="listing">
-          <img className="listing-photo" alt="?"></img>
-          <span className="listingtext">{singleProduct.title}</span>
-          <span className="listingtext">{singleProduct.price}</span>
-          <span className="listingtext">{singleProduct.description}</span>
+        <div className="single-product">
+          <img className="image" alt="?"></img>
+          <h1>{singleProduct.title}</h1>
+          <h2>{singleProduct.description}</h2>
+          <h3>{singleProduct.price}</h3>
           
         </div>
       ) : (
