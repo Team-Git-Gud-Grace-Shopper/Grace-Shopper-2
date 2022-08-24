@@ -1,7 +1,7 @@
 import session from "express-session";
 import React, { Fragment, useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
+import { Link, useHistory } from "react-router-dom";
+import { emptyCart, getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
 import "../style/Cart.css";
 
 const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
@@ -23,7 +23,9 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
     const itemToRemove = getSingleProduct(event.target.id);
     arr.splice(itemToRemove)
     sessionStorage.removeItem('cart', JSON.stringify(arr));
-    
+    if (authenticated){
+      await emptyCart();
+    }
   }
 
   return (

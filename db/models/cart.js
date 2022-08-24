@@ -6,7 +6,8 @@ const client = require('../client');
 module.exports = {
     createCartItem,
     getCart,
-    removeCartItem
+    removeCartItem,
+    emptyCart
 };
 
 async function createCartItem(productId, userId){
@@ -29,6 +30,17 @@ async function removeCartItem(productId, userId){
             WHERE cart_items."productId" = $1 AND cart_items."userId" = $2;
         `, [productId, userId])
     } catch (error) {
+        throw error;
+    }
+}
+
+async function emptyCart(){
+    try {
+        await client.query(`
+            DELETE
+            FROM cart_items;
+        `)
+    } catch (error){
         throw error;
     }
 }

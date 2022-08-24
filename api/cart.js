@@ -55,6 +55,15 @@ cartsRouter.post("/remove", async (req, res) => {
   }
 })
 
+cartsRouter.post("/empty", async (req, res) => {
+  try {
+    const emptyCart = await Cart.emptyCart();
+    res.send(emptyCart);
+  } catch (error){
+    throw error;
+  }
+})
+
 cartsRouter.post("/items", (req, res, next) => {
   const { item, quantity } = req.body; 
   console.log('This is item + quantity: ', item, quantity)
