@@ -88,7 +88,6 @@ console.log(cartList)
               <h1>Welcome to camelCases, {currentUser.username}!</h1>:
               <h1>Welcome to camelCases!</h1>
             }
-            <p>API Status: {APIHealth}</p>
           </div>
           <ProductListings
             productList= {productList}

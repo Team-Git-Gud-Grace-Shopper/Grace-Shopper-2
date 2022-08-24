@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
@@ -14,6 +14,10 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
     }
   };
 
+  const resetDropDown = () => {
+    setDropDown('none');
+  }
+
   const handleLogOut = (event) => {
     event.preventDefault();
     sessionStorage.removeItem('username');
@@ -22,6 +26,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
     setCurrentUser(null);
     setAuthenticated(false);
     setCartList([]);
+    setDropDown('none');
   }
   
   const renderDropDown = () => {
@@ -35,17 +40,17 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
           <div id="profile-dropdown">
             {authenticated?
               <Fragment>
-                <Link to="/profile">View Profile</Link>
+                <Link to="/profile" onClick={resetDropDown}>View Profile</Link>
                 <Link to="/login" onClick={handleLogOut}>Logout</Link>
               </Fragment>:
-              <Link to="/login">Login</Link>
+              <Link to="/login" onClick={resetDropDown}>Login</Link>
             }
           </div>
         );
       case "cart":
         return (
           <div id="cart-dropdown">
-            <Link to="/cart">View Cart</Link>
+            <Link to="/cart" onClick={resetDropDown}>View Cart</Link>
           </div>
         );
     }
@@ -54,7 +59,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
   return (
     <Fragment>
       <div id="navbar">
-        <Link to="/" id="logo">
+        <Link to="/" id="logo" onClick={resetDropDown}>
           camelCases
         </Link>
         <input id="searchbar" placeholder="Search..."></input>

@@ -67,6 +67,15 @@ export async function removeItemFromCart(productId, userId){
   }
 }
 
+export async function emptyCart(){
+  try{
+    const response = await axios.post("/api/cart/empty");
+    return response;
+  } catch (error){
+    throw error;
+  }
+}
+
 export async function getCart(userId) {
   try {
     const response = await axios.post("/api/cart/", {
