@@ -6,13 +6,13 @@ A functioning mock e-commerce application simluating an NFT marketplace ultilizi
 
 ## Technologies Used
 
-HTML
-CSS
-JavaScript
-React
-Express
-Node.js
-PostgreSQL
+* HTML
+* CSS
+* JavaScript
+* React
+* Express
+* Node.js
+* PostgreSQL
 
 ## Features
 ## Register/Login
