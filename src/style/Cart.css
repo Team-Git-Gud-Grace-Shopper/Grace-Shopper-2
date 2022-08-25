@@ -27,8 +27,8 @@ h3 {
     
   }
   
-  .listing {
-    width: 20vw;
+  .cart-listing {
+    width: 15vw;
     height: 40vh auto;
     margin: 20px 25px 5px;
     display: block;
@@ -36,6 +36,14 @@ h3 {
     border: solid black 2px;
     font-size: 20px;
     text-align: center;
+    background-color: white;
+    border-radius: 30px;
+  }
+
+  .cart-total-number {
+    background-color: wheat;
+    border: 2px solid black;
+    padding: 7px;
   }
   
   .listing-photo {
