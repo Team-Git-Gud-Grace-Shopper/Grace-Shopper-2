@@ -1,5 +1,6 @@
 import React from "react";
 import { createNewProduct, getProducts } from "../axios-services";
+import "../style/CreateNew.css"
 
 const CreateNew = ({setProductList}) => {
 
@@ -15,7 +16,7 @@ const CreateNew = ({setProductList}) => {
         .then((result) => setProductList(result.data));
     }
     return (
-        <div>
+        <div className="create-product-form">
             <span>New Product:</span>
             <div>
                 <span>Title:</span>
@@ -33,7 +34,7 @@ const CreateNew = ({setProductList}) => {
                 <span>Image url:</span>
                 <input id="new-image"></input>
             </div>
-            <button onClick={handleCreateNew}>Submit</button>
+            <button className="product-btn" onClick={handleCreateNew}>Submit</button>
         </div>
     );
 };

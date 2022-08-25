@@ -10,7 +10,6 @@ const SingleProductView = ({ productList, admin, setProductList }) => {
   useEffect(() => {
     const findSingleProduct = () => {
       let currentSingleProduct = productList.find((product) => {
-        // eslint-disable-next-line
         return product.id == id;
       });
       setSingleProduct(currentSingleProduct);
@@ -38,7 +37,7 @@ const SingleProductView = ({ productList, admin, setProductList }) => {
         {singleProduct && singleProduct.id ? (
           <div className="single-product">
             <img className="image" src={singleProduct.image} alt="?"></img>
-            <div className="single-product-info"> 
+            <div className="update-product-info"> 
               <span>Update Product Form</span>
               <div>
                 <span>Change Image URL:</span>
