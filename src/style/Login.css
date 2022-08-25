@@ -5,11 +5,16 @@
     justify-content: center;
     position: relative;
     top: 20vh;
-    width: 35vw;
+    width: 25vw;
     padding: 10px;
     border: 2px solid black;
     margin: 0 auto;
+    background-color: wheat;
+    border-radius: 30px;
+    
 }
+
+
 
 #login > span {
     margin-bottom: 30px;
