@@ -7,6 +7,7 @@ module.exports = {
   // add your database adapter fns here
   getAllUsers,
   createUser,
+  createAdmin,
   updateUser,
   getUserById,
   getUserByUsername,
@@ -38,6 +39,26 @@ async function createUser({
       ON CONFLICT (username) DO NOTHING 
       RETURNING *;
     `, [username, password, email]);
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function createAdmin({
+  username,
+  password,
+  email,
+  admin
+}) {
+  try {
+    const { rows: [ user ] } = await client.query(`
+      INSERT INTO users(username, password, email, admin) 
+      VALUES($1, $2, $3, $4) 
+      ON CONFLICT (username) DO NOTHING 
+      RETURNING *;
+    `, [username, password, email, admin]);
 
     return user;
   } catch (error) {

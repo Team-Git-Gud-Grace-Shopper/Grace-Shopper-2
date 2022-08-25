@@ -30,7 +30,8 @@ async function buildTables() {
       id SERIAL PRIMARY KEY,
       username VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255) UNIQUE NOT NULL,
-      email VARCHAR(255) UNIQUE NOT NULL
+      email VARCHAR(255) UNIQUE NOT NULL,
+      admin BOOLEAN DEFAULT false
     );
 
     CREATE TABLE products (
@@ -75,8 +76,16 @@ async function populateInitialData() {
       password: "wowicantbelieveit",
       email: "scamman@email.com",
     });
+
+    const admin = await User.createAdmin({
+      username: "bigboss",
+      password: "bigboss",
+      email: "bigboss@theman.com",
+      admin: true
+    });
     console.log("finished creating users");
     console.log("these are our users:", user1, user2, user3);
+    console.log("this is our admin: ", admin)
 
     console.log("starting to create products");
     const product1 = await Products.createProduct({
