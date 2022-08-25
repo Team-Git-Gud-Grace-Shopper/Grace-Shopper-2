@@ -2,7 +2,7 @@
 
 A functioning mock e-commerce application simluating an NFT marketplace ultilizing the PERN stack.
 
-/home/pbrent/Course-Work/Grace-Shopper/assets/Screenshot (5).png
+![](assets/Screenshot (5).png)
 
 ## Technologies Used
 
