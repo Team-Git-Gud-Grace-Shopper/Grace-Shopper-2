@@ -17,7 +17,6 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
       sessionStorage.setItem('cart', JSON.stringify(arr));
       setCartList(JSON.parse(sessionStorage.cart));
       if (authenticated){
-        console.log("here's the event target: " + productId)
         await addItemToCart(productId, currentUser.id);
       }
     }

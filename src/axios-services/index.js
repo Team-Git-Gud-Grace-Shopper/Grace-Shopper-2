@@ -47,7 +47,6 @@ export async function addItemToCart(productId, userId) {
       productId: productId,
       userId: userId
     });
-    console.log("This is add item response", response);
     return response.data;
   } catch (error) {
     throw error
@@ -55,7 +54,6 @@ export async function addItemToCart(productId, userId) {
 }
 
 export async function removeItemFromCart(productId, userId){
-  console.log("what's passed into axios: " + productId + " " + userId)
   try {
     const response = await axios.post("/api/cart/remove", {
       productId: productId,
@@ -81,7 +79,6 @@ export async function getCart(userId) {
     const response = await axios.post("/api/cart/", {
       userId: userId
     });
-    console.log("This is get cart response", response)
     return response;
   } catch (error) {
     throw error;
@@ -91,7 +88,6 @@ export async function getCart(userId) {
 export async function getSingleProduct(id) {
   try {
     const response = await axios.get(`/api/products/${id}`);
-    console.log("This is a single product:", response);
     return response.data;
   } catch (error) {}
 }
@@ -99,9 +95,6 @@ export async function getSingleProduct(id) {
 export async function getAllUsers() {
   try {
     const response = await axios.get("/api/users");
-
-    console.log(response);
-
     return response;
   } catch (error) {
     throw error;
@@ -126,7 +119,6 @@ export async function register(newUser) {
       password: newUser.password,
       email: newUser.email,
     });
-    console.log(response);
     return response;
   } catch (error) {
     throw error;
