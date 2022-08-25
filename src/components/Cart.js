@@ -130,7 +130,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
     {cartList.length?
       <div className="cart-total">
         <div>Total Cost: {renderTotal().toFixed(2)}</div>
-        <button className="checkout-btn" onClick={handleCheckout}><NavLink to="/checkout" activeClassName="checkout-link">PROCEED TO CHECKOUT</NavLink></button>
+        <button className="checkout-btn" onClick={handleCheckout}><Link to="/checkout" activeClassName="checkout-link">PROCEED TO CHECKOUT</Link></button>
       </div>:
       null}
     </Fragment> 
