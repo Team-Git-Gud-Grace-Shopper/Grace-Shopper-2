@@ -1,143 +1,56 @@
-# Let's Build a Full Stack Application
+# camelCases
 
-This full stack app boilerplate consists of:
+A functioning mock e-commerce application simluating an NFT marketplace ultilizing the PERN stack.
 
-- an Express web server,
-- a PostgreSQL database instance,
-- and a React front-end
+/home/pbrent/Course-Work/Grace-Shopper/assets/Screenshot (5).png
 
-You'll also find a bunch of convenient commands and workflows that will allow you to develop your app locally and deploy it to heroku. Let's dive in!
+## Technologies Used
 
-# Local Development
+HTML
+CSS
+JavaScript
+React
+Express
+Node.js
+PostgreSQL
 
-## Getting Started
+## Features
+## Register/Login
 
-1. Fork and clone this repo to your local machine, then run the following commands to reinitialize your git history from scratch:
+Users can register for a new account and login which allows access to a persistent cart even when exiting the browser. The user can also shop as a guest but will not have access to a persistent cart.
 
-```bash
-# these commands reset your git history
-$ rm -rf .git
-$ git init
-```
+## Product List
 
-2. Create a bare GitHub repo (no `.gitignore`, `README.md`, `CHANGELOG.md`, or license) and copy the ssh address to assign to your local clone with `git remote add origin <paste-your-ssh-address-here>`
+Users can browse a selection of original, fictional NFTs from the homepage. Once selected the user can update the quantity and add to their cart.
 
-3. `npm install` to add project dependencies to your local machine.
+## View Product Details
 
-4. Choose a name for your local database instance and edit `db/index.js` to assign the name to `DB_NAME`. Next, run `createdb <your-db-name-goes-here>` from your command line to spin up your database.
+/home/pbrent/Course-Work/Grace-Shopper/assets/Screenshot (6).png
 
-5. `npm run start:dev` will build your React app and start your express server in concurrent mode (meaning that both processes run in the same terminal window). Once this command is running, you can start developing! `nodemon` and `react-scripts` will listen to file changes and update continuously (hot-module-reloading).
+Users can also select the "View product details" button for a more in-depth view of the selected product which includes the title, price, a larger image, and a product description in a seperate view.   
 
-<em>NB: If you see a `proxy error` message in the terminal, just hard refresh your browser window and you'll be all set.</em>
+## Shopping Cart
 
-## Project Structure
 
-```bash
-├── .github/workflows
-│   └── heroku-deploy.yaml
-│  
-├── api
-│   ├── apiRouter.test.js
-│   └── index.js
-│
-├── db
-│   ├── models
-│   │   ├── index.js
-│   │   └── user.js
-│   ├── client.js
-│   ├── index.js
-│   └── init_db.js
-│
-├── public
-│   └── index.html
-│
-├── src
-│   ├── axios-services
-│   │   └── index.js
-│   ├── components
-│   │   ├── App.js
-│   │   └── index.js
-│   ├── style
-│   │   ├── App.css
-│   │   └── index.css
-│   └── index.js
-│
-├── .gitignore
-├── index.js
-├── package-lock.json
-├── package.json
-└── README.md
-```
 
-`/db` contains your `index.js` which exports the client instance and your database adapter models, as well as `init_db.js` which should be run when you need to rebuild your tables and seed data.
+By accessing the shopping cart from the navigation menu users have access to a listing of all items added to their cart with quantities included. A "Remove item" button is included that removes the items selected. If the user is satisfied with their selections they can choose the 'Proceed to Checkout" button to complete their transaction. 
 
-`/public` and `/src` are the two puzzle pieces for your React front-end. `/public` contains any static files necessary for your front-end. This can include images, a favicon, and most importantly the `index.html` that is the root of your React application.
+Installation
+To get a local copy up and running follow these steps:
+Clone repository:
+git@github.com:Team-Git-Gud-Grace-Shopper/Grace-Shopper-2.git
+Install packages:
+npm install
+Seed the database:
+npm run db:seed
+Run app in developement mode:
+npm run start:dev
+Open http://localhost:3000 to view it in your browser.
 
-`src/axios-services` contains your axios network request adapters. `src/components` contains your React component files.
+## Authors
 
-Inside `/api` you have `index.js` which is responsible for building the `apiRouter` that you'll attach in the express server, and `apiRouter.test.js` which will give you direction on test-driven development for your api. Your React application and Express server use any routes you build in the `/api` directory to send/receive data via JSON, for example, a `usersRouter.js` that will be required and mounted in the `apiRouter.js`.
+Judah Barber - https://github.com/jbarber753
 
-Rounding things out, we've got the top level `index.js` that creates your Express Server. This should be responsible for setting up your API, starting your server, and connecting to your database. We've also got our `.gitignore`, `package-lock.json`, and `package.json` where you'll find the scripts necessary to get your app off the ground, as well as this `README.md`.
+Patrick Brent - https://github.com/pbrent
 
-## Command Line Tools
 
-In addition to `start:dev`, `client:build`, `client:dev` and `server:dev`, you have access to `db:build` which rebuilds the database, all the tables, and ensures that there is meaningful data present.
-
-# Deployment
-
-## Setting up Heroku
-
-Setup your heroku project by choosing a site name and provisioning a postgres database. These commands create a heroku project backed by a postgres db instance which will live at https://project-name-goes-here.herokuapp.com. You'll want to replace `project-name-goes-here` with your selected project name.
-
-You'll only need to do this step once, at the outset of your project:
-
-```bash
-# create your project
-$ heroku create project-name-goes-here
-# create your database instance
-$ heroku addons:create heroku-postgresql:hobby-dev
-```
-
-Next we'll configure your database instance to ignore the `ssl` configuration object our `pg` client instance expects:
-
-```bash
-# set ssl mode to no-verify
-$ heroku config:set PGSSLMODE=no-verify
-# confirm your environment variable has been set
-$ heroku config
-```
-
-## Configuring GitHub Actions Secrets for CI/CD
-
-We're going to leverage continuous integration and continuous development methodologies, or CI/CD, to deploy your app. To enable CI/CD you'll need to add a few environment variables to your project repo.
-
-Under Settings, choose the Secrets option under Security. You'll see the following dialog, and you'll be able to add a secret by selecting the `New repository secret` button. Once you create a GitHub secret you can never see it again, but you can modify it! We're going to add 3 secrets to our repo:
-
-- `HEROKU_API_KEY`: you'll find this listed in your heroku account settings
-- `HEROKU_APP_NAME`: this is the project name you chose above
-- `HEROKU_EMAIL`: this is the email address associated with your heroku account
-
-![](/assets/github-actions-secrets.png)
-
-Each project group will elect one person to be the "owner" of the heroku account, and that person's api key and email address will be used to register the secrets above.
-
-**After the bootcamp ends**, you might want to redeploy and make changes to your team's application. Once you've forked this repo to your personal GitHub Account, you can add your own secrets and redeploy under a different heroku app name!
-
-## Deployment
-
-In `.github/workflows` you'll find a YAML, an acronym for "YAML Ain't Markup Language", that triggers an automated deployment by watching your `main` branch: whenever a new pull request is merged to `main`, your app will automagically deploy itself on heroku.
-
-Optionally, you can also trigger this deployment workflow by pushing to the `deploy` branch. Many companies use this pattern to enable hotfixes without going through the lengthy review process of creating a PR and merging it.
-
-Note that this workflow does **not** seed your database. To seed your remote postgres instance, run the following command:
-
-```bash
-# this command seeds your remote postgres instance
-$ heroku run npm run db:build
-```
-
-As you project grows you'll probably want to re-seed and refresh your database from time to time. Rerun this command whenever you want to re-seed.
-
-# Wrapup
-
-You'll be able to view your fullstack application by running `heroku open`. Bask in the glory of your live site, and happy coding!

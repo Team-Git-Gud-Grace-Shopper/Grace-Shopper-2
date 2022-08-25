@@ -40,7 +40,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
           <div id="profile-dropdown">
             {authenticated?
               <Fragment>
-                <Link to="/profile" onClick={resetDropDown}>View Profile</Link>
+                
                 <Link to="/login" onClick={handleLogOut}>Logout</Link>
               </Fragment>:
               <Link to="/login" onClick={resetDropDown}>Login</Link>
@@ -82,7 +82,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
           Cart
         </button>
         <button className="navbar-button" id="profile" onClick={handleClick}>
-          Profile
+          Login
         </button>
       </div>
       {renderDropDown()}

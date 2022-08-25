@@ -1,6 +1,6 @@
 import session from "express-session";
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useHistory, NavLink } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { addItemToCart, emptyCart, getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
 import "../style/Cart.css";
 

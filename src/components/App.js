@@ -84,8 +84,8 @@ const App = () => {
           
           <div className="app-container">
             {authenticated?
-              <h1>Welcome to camelCases, {currentUser.username}!</h1>:
-              <h1>Welcome to camelCases!</h1>
+              <p className="home-title">Welcome to camelCases, {currentUser.username}!</p> :
+              <p className="home-title">Welcome to camelCases!</p>
             }
           </div>
           <ProductListings

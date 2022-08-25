@@ -1,4 +1,4 @@
-/* import fonts here */
+@import url(https://fonts.googleapis.com/css?family=Rubik+Dirt);
 
 * {
   box-sizing: border-box;
@@ -20,4 +20,6 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
+  background: url(https://i.pinimg.com/originals/4e/94/7a/4e947afe00fb849dd5796dcf5f63d9e6.jpg);
+  background-size: cover; 
 }
