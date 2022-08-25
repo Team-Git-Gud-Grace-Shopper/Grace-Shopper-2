@@ -8,7 +8,11 @@
 
 h3 {
     text-align: center;
-    margin-top: 4em;
+    margin-top: 2em;
+    background-color: wheat;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid black;
 }
 
   
@@ -35,13 +39,13 @@ h3 {
   }
   
   .listing-photo {
-    height: 20vh;
-    width: 15vh;
+    height: 20vh auto;
+    width: 25vh;
     border: solid black 2px;
   }
   
   .listingtitle {
-    margin-top: 7em;
+    margin-top: 2em;
     display: block;
     
   }
@@ -56,6 +60,7 @@ h3 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     display: inline-block;
     margin-top: 5px;
+    margin-left: 10px;
     background-color: red;
     color: white;
     font-size: 15px;
