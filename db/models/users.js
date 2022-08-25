@@ -76,8 +76,6 @@ async function getUserById(userId) {
       return null;
     }
 
-    // user.posts = await getPostsByUser(userId);
-
     return user;
   } catch (error) {
     throw error;

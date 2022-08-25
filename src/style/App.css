@@ -8,7 +8,20 @@
   color: darkgreen;
   border-radius: 30px;
   
-} 
+}
+
+.app-container > a {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  display: inline;
+  margin-top: 5px;
+  margin-left: 10px;
+  background-color: red;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px;
+}
 
 .home-title {
   border: 2px solid black;
