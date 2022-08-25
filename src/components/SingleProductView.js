@@ -30,7 +30,7 @@ const SingleProductView = ({ productList }) => {
           <div className="single-product-info">  
             <h1>{singleProduct.title}</h1>
             <h2>{singleProduct.description}</h2>
-            <h3>{singleProduct.price}</h3>
+            <h3 className="single-product-price">${singleProduct.price}</h3>
           </div>  
         </div>
       ) : (
