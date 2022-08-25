@@ -57,7 +57,6 @@ To get a local copy up and running follow these steps:
 
 4. Open http://localhost:3000 to view it in your browser.
 
-
 ## Authors
 
 Judah Barber - https://github.com/jbarber753
