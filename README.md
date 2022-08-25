@@ -2,6 +2,8 @@
 
 A functioning mock e-commerce application simluating an NFT marketplace ultilizing the PERN stack.
 
+Live version: https://git-gud-grace-shopper.herokuapp.com/
+
 ![](assets/Screenshot(5).png)
 
 ## Technologies Used
