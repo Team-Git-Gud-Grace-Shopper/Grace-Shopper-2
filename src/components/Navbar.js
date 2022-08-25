@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, productList}) => {
+const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, productList, setAdmin}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
@@ -25,6 +25,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
     sessionStorage.removeItem('cart');
     setCurrentUser(null);
     setAuthenticated(false);
+    setAdmin(false);
     setCartList([]);
     setDropDown('none');
   }

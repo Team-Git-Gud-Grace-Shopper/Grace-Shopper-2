@@ -22,7 +22,6 @@ async function createCartItem(productId, userId){
 }
 
 async function removeCartItem(productId, userId){
-    console.log("what's being passed into db: " + productId + " " + userId)
     try {
         await client.query(`
             DELETE
@@ -54,7 +53,6 @@ async function getCart(userId){
             JOIN products ON products.id = cart_items."productId"
             WHERE users.id = $1;
         `, [userId]);
-        console.log("This is rows: " + rows)
         return rows;
     } catch (error) {
         throw error;

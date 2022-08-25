@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { checkCurrentUser, checkSession, getAPIHealth, getCart, getProducts } from '../axios-services';
+import { checkCurrentUser, getCart, getProducts } from '../axios-services';
 import '../style/App.css';
 import { 
   Cart,
@@ -11,35 +11,21 @@ import {
   Navbar,
   Login,
   SingleProductView,
-  Checkout
+  Checkout,
+  CreateNew
 } from '.';
 
-
 const App = () => {
-  const [APIHealth, setAPIHealth] = useState('');
   const [productList, setProductList] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [cartList, setCartList] = useState([]);
-  
-  useEffect(() => {
-    // follow this pattern inside your useEffect calls:
-    // first, create an async function that will wrap your axios service adapter
-    // invoke the adapter, await the response, and set the data
-    const getAPIStatus = async () => {
-      const { healthy } = await getAPIHealth();
-      setAPIHealth(healthy ? 'api is up! :D' : 'api is down :/');
-    };
-
-    // second, after you've defined your getter above
-    // invoke it immediately after its declaration, inside the useEffect callback
-    getAPIStatus();
-  }, []);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     getProducts()
     .then((result) => setProductList(result.data));
-  }, [])
+  }, [setProductList])
 
   useEffect(() => {
     if (sessionStorage.username){
@@ -55,7 +41,7 @@ const App = () => {
     else {
       setAuthenticated(false);
     }
-  })
+  }, [])
 
   useEffect(() => {
     if (authenticated){
@@ -70,6 +56,12 @@ const App = () => {
     }
   }, [authenticated, currentUser])
 
+  useEffect(() => {
+    if (authenticated && currentUser.admin === true){
+      setAdmin(true);
+    }
+  }, [authenticated, currentUser])
+
   return (
     <BrowserRouter>
     <Navbar
@@ -78,6 +70,7 @@ const App = () => {
       setCurrentUser={setCurrentUser}
       setCartList={setCartList}
       productList={productList}
+      setAdmin={setAdmin}
       />
       <Switch>
         <Route exact path='/'>
@@ -87,13 +80,20 @@ const App = () => {
               <p className="home-title">Welcome to camelCases, {currentUser.username}!</p> :
               <p className="home-title">Welcome to camelCases!</p>
             }
+            {admin?
+              <Link to='/createnew'>Create new product</Link>:
+              null
+            }
           </div>
           <ProductListings
             productList= {productList}
+            setProductList={setProductList}
             cartList={cartList}
             setCartList={setCartList}
             authenticated={authenticated}
-            currentUser={currentUser}/>
+            currentUser={currentUser}
+            admin={admin}
+            />
         </Route>
         <Route path="/cart"><Cart
             authenticated={authenticated}
@@ -111,7 +111,8 @@ const App = () => {
             />
         </Route>
         <Route path="/checkout"><Checkout /></Route>
-        <Route path='/products/:id'><SingleProductView productList={productList}/></Route>
+        <Route path='/products/:id'><SingleProductView productList={productList} setProductList={setProductList} admin={admin}/></Route>
+        <Route path='/createnew'><CreateNew setProductList={setProductList}></CreateNew></Route>
       </Switch>
     </BrowserRouter>
 

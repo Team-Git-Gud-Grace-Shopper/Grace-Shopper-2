@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useHistory } from "react-router-dom";
 import '../style/Login.css';
-import { register, login, getCart } from "../axios-services";
+import { register, login } from "../axios-services";
 
 const Login = ({setAuthenticated, currentUser, setCurrentUser, setCartList}) => {
     const [isRegistering, setIsRegistering] = useState(false);

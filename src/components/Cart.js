@@ -1,7 +1,6 @@
-import session from "express-session";
-import React, { Fragment, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { addItemToCart, emptyCart, getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { addItemToCart, emptyCart, getSingleProduct } from "../axios-services";
 import "../style/Cart.css";
 
 const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
@@ -130,7 +129,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
     {cartList.length?
       <div className="cart-total">
         <div>Total Cost: {renderTotal().toFixed(2)}</div>
-        <button className="checkout-btn" onClick={handleCheckout}><Link to="/checkout" activeClassName="checkout-link">PROCEED TO CHECKOUT</Link></button>
+        <button className="checkout-btn" onClick={handleCheckout}><Link to="/checkout">PROCEED TO CHECKOUT</Link></button>
       </div>:
       null}
     </Fragment> 

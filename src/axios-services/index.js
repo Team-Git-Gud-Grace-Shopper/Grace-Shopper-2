@@ -136,3 +136,45 @@ export async function login(username, password) {
     throw error;
   }
 }
+
+export async function deleteProduct(id){
+  try {
+    const response = await axios.post('api/products/delete', {
+      id: id
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function createNewProduct(product){
+  try {
+    const response = await axios.post('api/products/create', {
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      image: product.image
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateProduct(product){
+  try {
+    console.log("axios services product: ", product)
+    const response = await axios.patch('api/products/update', {
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      image: product.image
+    });
+    console.log("axios response: ", response)
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

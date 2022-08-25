@@ -25,7 +25,6 @@ cartsRouter.use((req, res, next) => {
 // });
 
 cartsRouter.post('/', async (req, res) => {
-  console.log("hitting the api portion")
   const {userId} = req.body;
   try {
     const carts = await Cart.getCart(userId);
@@ -66,7 +65,6 @@ cartsRouter.post("/empty", async (req, res) => {
 
 cartsRouter.post("/items", (req, res, next) => {
   const { item, quantity } = req.body; 
-  console.log('This is item + quantity: ', item, quantity)
   const cartItem = { item, quantity };
   const { cart } = req.session
   // console.log('cartItem: ', cartItem)
@@ -77,7 +75,6 @@ cartsRouter.post("/items", (req, res, next) => {
       req.session.cart = {
           items: [cartItem]
       }
-      console.log("this is cart", req.session.cart)
   };
 
   res.sendStatus(200); 
