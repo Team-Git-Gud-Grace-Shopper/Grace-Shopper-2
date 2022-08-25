@@ -63,6 +63,3 @@ apiRouter.patch('/update', async (req, res) => {
 })
 
 module.exports = apiRouter;
-
-
-

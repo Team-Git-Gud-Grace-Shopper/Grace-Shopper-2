@@ -58,4 +58,3 @@ async function getCart(userId){
         throw error;
     }
 }
-
