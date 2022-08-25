@@ -2,7 +2,7 @@
 
 A functioning mock e-commerce application simluating an NFT marketplace ultilizing the PERN stack.
 
-(assets/Screenshot (5).png)
+assets/Screenshot (5).png
 
 ## Technologies Used
 
@@ -25,7 +25,7 @@ Users can browse a selection of original, fictional NFTs from the homepage. Once
 
 ## View Product Details
 
-(assets/Screenshot (6).png)
+assets/Screenshot (6).png
 
 Users can also select the "View product details" button for a more in-depth view of the selected product which includes the title, price, a larger image, and a product description in a seperate view.   
 
@@ -50,7 +50,7 @@ Open http://localhost:3000 to view it in your browser.
 ## Authors
 
 Judah Barber - https://github.com/jbarber753
-Patrick Brent - https://github.com/pbrent
 
+Patrick Brent - https://github.com/pbrent
 
 
