@@ -2,7 +2,8 @@
 
 A functioning mock e-commerce application simluating an NFT marketplace ultilizing the PERN stack.
 
-![](assets/Screenshot (5).png)
+![](assets/Screenshot(5).png)
+/home/pbrent/Course-Work/Grace-Shopper/assets/Screenshot(5).png
 
 ## Technologies Used
 
@@ -25,7 +26,7 @@ Users can browse a selection of original, fictional NFTs from the homepage. Once
 
 ## View Product Details
 
-/home/pbrent/Course-Work/Grace-Shopper/assets/Screenshot (6).png
+
 
 Users can also select the "View product details" button for a more in-depth view of the selected product which includes the title, price, a larger image, and a product description in a seperate view.   
 
