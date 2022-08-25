@@ -77,6 +77,7 @@ const App = () => {
       setAuthenticated={setAuthenticated}
       setCurrentUser={setCurrentUser}
       setCartList={setCartList}
+      productList={productList}
       />
       <Switch>
         <Route exact path='/'>

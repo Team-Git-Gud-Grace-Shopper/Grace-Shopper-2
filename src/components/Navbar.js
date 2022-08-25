@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) => {
+const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, productList}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
@@ -56,6 +56,20 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
     }
   };
 
+  const handleSearch = event => {
+    event.preventDefault();
+    let input = document.getElementById('searchbar').value.toLowerCase();
+    let checkListings = document.getElementsByClassName('listing');
+    for (let i = 0; i < productList.length; i++){
+        if (!productList[i].title.toLowerCase().includes(input)){
+            checkListings[i].style.display = 'none';
+        }
+        else {
+            checkListings[i].style.display = 'block';
+        }
+    }
+}
+
   return (
     <Fragment>
       <div id="navbar">
@@ -63,7 +77,7 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList}) 
           camelCases
         </Link>
         <input id="searchbar" placeholder="Search..."></input>
-        <button id="search-button">Search</button>
+        <button id="search-button" onClick={handleSearch}>Search</button>
         <button className="navbar-button" id="cart" onClick={handleClick}>
           Cart
         </button>
