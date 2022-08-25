@@ -3,17 +3,16 @@ const {
   User,
   Products,
 
-  // declare your model imports here
-  // for example, User
+  
 } = require("./");
 
 client.connect();
 
 async function buildTables() {
   try {
-    // drop tables in correct order
+    
 
-    console.log("Dropping all tables....");
+    
     await client.query(`
       DROP TABLE IF EXISTS cart_items;
       DROP TABLE IF EXISTS products CASCADE;
@@ -21,9 +20,8 @@ async function buildTables() {
     `);
     console.log("Finished dropping tables");
 
-    // build tables in correct order
+    
 
-    console.log("Creating tables...");
 
     await client.query(`
     CREATE TABLE users (
@@ -48,19 +46,16 @@ async function buildTables() {
     );
     
     `);
-    console.log("Finished creating tables");
-    console.log();
+    
   } catch (error) {
     throw error;
   }
 }
 
 async function populateInitialData() {
-  console.log("Starting to create users...");
+  
   try {
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-    // const user1 = await User.createUser({ ...user info goes here... })
+    
     const user1 = await User.createUser({
       username: "nftshopper",
       password: "itssecret123",
@@ -83,11 +78,9 @@ async function populateInitialData() {
       email: "bigboss@theman.com",
       admin: true
     });
-    console.log("finished creating users");
-    console.log("these are our users:", user1, user2, user3);
-    console.log("this is our admin: ", admin)
+    
 
-    console.log("starting to create products");
+    
     const product1 = await Products.createProduct({
       title: "Original Camel NFT",
       description: "The infamous original, no introduction needed. Created years before the current craze, this exclusive NFT pre-dates all others by decades. It's value shines bright and intense like the desert sun",
@@ -152,20 +145,6 @@ async function populateInitialData() {
       price: "225.99",
       image: "https://hooraymag.com/wp-content/uploads/2017/05/Cactus-Cup-Cakes_Desert-Desserts_02.jpg"
     });
-    console.log("Finished creating products");
-    console.log(
-      "these are products:",
-      product1,
-      product2,
-      product3,
-      product4,
-      product5,
-      product6,
-      product7,
-      product8,
-      product9,
-      product10
-    );
   } catch (error) {
     throw error;
   }

@@ -1,17 +1,12 @@
-// grab our db client connection to use with our adapters
-const client = require('../client');
-
-
+const client = require("../client");
 
 module.exports = {
-  // add your database adapter fns here
   getAllUsers,
   createUser,
   createAdmin,
-  updateUser,
   getUserById,
   getUserByUsername,
-  getUser
+  getUser,
 };
 
 async function getAllUsers() {
@@ -27,18 +22,19 @@ async function getAllUsers() {
   }
 }
 
-async function createUser({ 
-  username, 
-  password,
-  email
-}) {
+async function createUser({ username, password, email }) {
   try {
-    const { rows: [ user ] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
       INSERT INTO users(username, password, email) 
       VALUES($1, $2, $3 ) 
       ON CONFLICT (username) DO NOTHING 
       RETURNING *;
-    `, [username, password, email]);
+    `,
+      [username, password, email]
+    );
 
     return user;
   } catch (error) {
@@ -46,44 +42,19 @@ async function createUser({
   }
 }
 
-async function createAdmin({
-  username,
-  password,
-  email,
-  admin
-}) {
+async function createAdmin({ username, password, email, admin }) {
   try {
-    const { rows: [ user ] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
       INSERT INTO users(username, password, email, admin) 
       VALUES($1, $2, $3, $4) 
       ON CONFLICT (username) DO NOTHING 
       RETURNING *;
-    `, [username, password, email, admin]);
-
-    return user;
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function updateUser(id, fields = {}) {
-  // build the set string
-  const setString = Object.keys(fields).map(
-    (key, index) => `"${ key }"=$${ index + 1 }`
-  ).join(', ');
-
-  // return early if this is called without fields
-  if (setString.length === 0) {
-    return;
-  }
-
-  try {
-    const { rows: [ user ] } = await client.query(`
-      UPDATE users
-      SET ${ setString }
-      WHERE id=${ id }
-      RETURNING *;
-    `, Object.values(fields));
+    `,
+      [username, password, email, admin]
+    );
 
     return user;
   } catch (error) {
@@ -93,14 +64,16 @@ async function updateUser(id, fields = {}) {
 
 async function getUserById(userId) {
   try {
-    const { rows: [ user ] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(`
       SELECT id, username, email
       FROM users
-      WHERE id=${ userId }
+      WHERE id=${userId}
     `);
 
     if (!user) {
-      return null
+      return null;
     }
 
     // user.posts = await getPostsByUser(userId);
@@ -113,11 +86,16 @@ async function getUserById(userId) {
 
 async function getUserByUsername(username) {
   try {
-    const { rows: [user] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
       SELECT *
       FROM users
       WHERE username=$1;
-    `, [username]);
+    `,
+      [username]
+    );
 
     return user;
   } catch (error) {
@@ -127,11 +105,16 @@ async function getUserByUsername(username) {
 
 async function getUser(username, password) {
   try {
-    const { rows: [user] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
       SELECT id, username, email
       FROM users
       WHERE username=$1 AND password=$2;
-    `, [username, password]);
+    `,
+      [username, password]
+    );
 
     return user;
   } catch (error) {

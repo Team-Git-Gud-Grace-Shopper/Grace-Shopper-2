@@ -45,9 +45,6 @@ apiRouter.post("/login", async (req, res, next) => {
   }
 });
 
-
-// POST /api/users/register
-
 apiRouter.post("/register", async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
@@ -81,8 +78,6 @@ apiRouter.post("/register", async (req, res, next) => {
           { expiresIn: "1w" }
         );
         res.send({ user, message: "Thank you for signing up!", token });
-
-        console.log("this is token:", token);
       }
     }
   } catch ({ name, message }) {
@@ -90,9 +85,9 @@ apiRouter.post("/register", async (req, res, next) => {
   }
 });
 
-apiRouter.post('/', async (req, res) => {
-  try{
-    const {username} = req.body;
+apiRouter.post("/", async (req, res) => {
+  try {
+    const { username } = req.body;
     const user = await getUserByUsername(username);
     res.send(user);
   } catch (error) {

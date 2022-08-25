@@ -6,13 +6,13 @@ A functioning mock e-commerce application simluating an NFT marketplace ultilizi
 
 ## Technologies Used
 
-HTML
-CSS
-JavaScript
-React
-Express
-Node.js
-PostgreSQL
+* HTML
+* CSS
+* JavaScript
+* React
+* Express
+* Node.js
+* PostgreSQL
 
 ## Features
 ## Register/Login
@@ -20,6 +20,8 @@ PostgreSQL
 Users can register for a new account and login which allows access to a persistent cart even when exiting the browser. The user can also shop as a guest but will not have access to a persistent cart.
 
 ## Product List
+
+![](assets/Screenshot(8).png)
 
 Users can browse a selection of original, fictional NFTs from the homepage. Once selected the user can update the quantity and add to their cart.
 
@@ -40,12 +42,19 @@ Installation
 To get a local copy up and running follow these steps:
 
 1. Clone repository: git@github.com:Team-Git-Gud-Grace-Shopper/Grace-Shopper-2.git
+
 2. Install packages:
+
 -npm install
+
 3. Seed the database:
+
 -npm run db:seed
+
 4. Run app in developement mode:
+
 -npm run start:dev
+
 4. Open http://localhost:3000 to view it in your browser.
 
 ## Authors

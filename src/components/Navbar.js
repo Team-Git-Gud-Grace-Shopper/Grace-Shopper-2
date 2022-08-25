@@ -2,7 +2,13 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, productList}) => {
+const Navbar = ({
+  authenticated,
+  setAuthenticated,
+  setCurrentUser,
+  setCartList,
+  productList,
+}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
@@ -15,20 +21,20 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
   };
 
   const resetDropDown = () => {
-    setDropDown('none');
-  }
+    setDropDown("none");
+  };
 
   const handleLogOut = (event) => {
     event.preventDefault();
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('cart');
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("cart");
     setCurrentUser(null);
     setAuthenticated(false);
     setCartList([]);
-    setDropDown('none');
-  }
-  
+    setDropDown("none");
+  };
+
   const renderDropDown = () => {
     switch (dropDown) {
       default:
@@ -38,37 +44,42 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
       case "profile":
         return (
           <div id="profile-dropdown">
-            {authenticated?
+            {authenticated ? (
               <Fragment>
-                
-                <Link to="/login" onClick={handleLogOut}>Logout</Link>
-              </Fragment>:
-              <Link to="/login" onClick={resetDropDown}>Login</Link>
-            }
+                <Link to="/login" onClick={handleLogOut}>
+                  Logout
+                </Link>
+              </Fragment>
+            ) : (
+              <Link to="/login" onClick={resetDropDown}>
+                Login
+              </Link>
+            )}
           </div>
         );
       case "cart":
         return (
           <div id="cart-dropdown">
-            <Link to="/cart" onClick={resetDropDown}>View Cart</Link>
+            <Link to="/cart" onClick={resetDropDown}>
+              View Cart
+            </Link>
           </div>
         );
     }
   };
 
-  const handleSearch = event => {
+  const handleSearch = (event) => {
     event.preventDefault();
-    let input = document.getElementById('searchbar').value.toLowerCase();
-    let checkListings = document.getElementsByClassName('listing');
-    for (let i = 0; i < productList.length; i++){
-        if (!productList[i].title.toLowerCase().includes(input)){
-            checkListings[i].style.display = 'none';
-        }
-        else {
-            checkListings[i].style.display = 'block';
-        }
+    let input = document.getElementById("searchbar").value.toLowerCase();
+    let checkListings = document.getElementsByClassName("listing");
+    for (let i = 0; i < productList.length; i++) {
+      if (!productList[i].title.toLowerCase().includes(input)) {
+        checkListings[i].style.display = "none";
+      } else {
+        checkListings[i].style.display = "block";
+      }
     }
-}
+  };
 
   return (
     <Fragment>
@@ -77,7 +88,9 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
           camelCases
         </Link>
         <input id="searchbar" placeholder="Search..."></input>
-        <button id="search-button" onClick={handleSearch}>Search</button>
+        <button id="search-button" onClick={handleSearch}>
+          Search
+        </button>
         <button className="navbar-button" id="cart" onClick={handleClick}>
           Cart
         </button>

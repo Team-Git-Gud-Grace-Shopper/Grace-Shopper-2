@@ -52,11 +52,9 @@
   #profile-dropdown {
     display: block;
     width: 100px;
-    /* align-items: center; */
     position: fixed;
     right: 19em;
     padding: 5px;
-    /* flex-direction: column; */
     border: solid black 2px;
     background-color: wheat;
   }
@@ -65,7 +63,6 @@
     display: flex;
     width: 100px;
     color: black;
-    /* align-items: center; */
     position: fixed;
     right: 27em;
     padding: 5px;
