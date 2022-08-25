@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import "../style/SingleProduct.css";
 
 const SingleProductView = ({ productList }) => {
-  // console.log("this is product list in single product view:", productList)
   const { id } = useParams();
-  // console.log("this is the id we want to see:", id)
 
   const [singleProduct, setSingleProduct] = useState({});
 
@@ -14,24 +12,22 @@ const SingleProductView = ({ productList }) => {
       let currentSingleProduct = productList.find((product) => {
         return product.id == id;
       });
-      // console.log("This is the found product:", currentSingleProduct)
+
       setSingleProduct(currentSingleProduct);
     };
     findSingleProduct();
-    // console.log("this is single product", singleProduct)
   }, [productList, id]);
 
   return (
     <div>
-      
       {singleProduct && singleProduct.id ? (
         <div className="single-product">
           <img className="image" src={singleProduct.image} alt="?"></img>
-          <div className="single-product-info">  
+          <div className="single-product-info">
             <h1>{singleProduct.title}</h1>
             <h2>{singleProduct.description}</h2>
             <h3 className="single-product-price">${singleProduct.price}</h3>
-          </div>  
+          </div>
         </div>
       ) : (
         "no data to show"

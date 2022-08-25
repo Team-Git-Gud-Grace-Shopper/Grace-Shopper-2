@@ -1,5 +1,5 @@
 const apiRouter = require("express").Router();
-const session = require('express-session');
+const session = require("express-session");
 
 apiRouter.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -11,23 +11,23 @@ apiRouter.use((req, res, next) => {
 
 apiRouter.use(
   session({
-      secret: "shhh its a secret",
-      resave: false,
-      saveUninitialized: false
+    secret: "shhh its a secret",
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
 apiRouter.get("/", (req, res) => {
-  console.log(req.session); 
-  console.log('The actual session id: ', req.sessionID);
-  req.session.viewCount += 1; 
+  console.log(req.session);
+  console.log("The actual session id: ", req.sessionID);
+  req.session.viewCount += 1;
   res.send(`View count at ${req.session.viewCount}`);
 });
 
 apiRouter.get("/logout", (req, res, next) => {
   req.session.destroy(() => {
-      console.log("Session has been destroyed.")
-  })
+    console.log("Session has been destroyed.");
+  });
 });
 
 apiRouter.get("/", (req, res, next) => {
@@ -41,8 +41,6 @@ apiRouter.get("/health", (req, res, next) => {
     healthy: true,
   });
 });
-
-// place your routers here
 
 const productsRouter = require("./products");
 apiRouter.use("/products", productsRouter);

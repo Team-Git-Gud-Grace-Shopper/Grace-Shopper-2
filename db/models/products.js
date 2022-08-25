@@ -1,10 +1,9 @@
 const client = require("../client");
 
-
 module.exports = {
   createProduct,
   getAllProducts,
-  getProductById
+  getProductById,
 };
 
 async function createProduct({ title, description, price, image }) {
@@ -26,7 +25,6 @@ async function createProduct({ title, description, price, image }) {
   }
 }
 
-
 async function getAllProducts() {
   try {
     const { rows } = await client.query(`
@@ -42,15 +40,18 @@ async function getAllProducts() {
 
 async function getProductById(id) {
   try {
-    const { rows: [ product ] } = await client.query(`
+    const {
+      rows: [product],
+    } = await client.query(
+      `
       SELECT * 
       FROM products
       WHERE id=$1;
-      `, [id]);
-        return product;
-        
+      `,
+      [id]
+    );
+    return product;
   } catch (error) {
     throw error;
   }
 }
-

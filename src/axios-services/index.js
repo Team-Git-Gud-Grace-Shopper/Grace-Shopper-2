@@ -1,18 +1,5 @@
 import axios from "axios";
 
-// this file holds your frontend network request adapters
-// think about each function as a service that provides data
-// to your React UI through AJAX calls
-
-// for example, if we need to display a list of users
-// we'd probably want to define a getUsers service like this:
-
-//PATCH cart request updating quantity product === id
-//update to number being passed
-
-//DELETE id that === cart ID
-
-
 export async function getAPIHealth() {
   try {
     const { data } = await axios.get("/api/health");
@@ -25,8 +12,8 @@ export async function getAPIHealth() {
 
 export async function checkSession() {
   try {
-    const response = await axios.get('/api/');
-    return response
+    const response = await axios.get("/api/");
+    return response;
   } catch (error) {
     throw error;
   }
@@ -45,31 +32,31 @@ export async function addItemToCart(productId, userId) {
   try {
     const response = await axios.post("/api/cart/add", {
       productId: productId,
-      userId: userId
+      userId: userId,
     });
     return response.data;
   } catch (error) {
-    throw error
-  }
-}
-
-export async function removeItemFromCart(productId, userId){
-  try {
-    const response = await axios.post("/api/cart/remove", {
-      productId: productId,
-      userId: userId
-    });
-    return response;
-  } catch (error){
     throw error;
   }
 }
 
-export async function emptyCart(){
-  try{
+export async function removeItemFromCart(productId, userId) {
+  try {
+    const response = await axios.post("/api/cart/remove", {
+      productId: productId,
+      userId: userId,
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function emptyCart() {
+  try {
     const response = await axios.post("/api/cart/empty");
     return response;
-  } catch (error){
+  } catch (error) {
     throw error;
   }
 }
@@ -77,7 +64,7 @@ export async function emptyCart(){
 export async function getCart(userId) {
   try {
     const response = await axios.post("/api/cart/", {
-      userId: userId
+      userId: userId,
     });
     return response;
   } catch (error) {
@@ -103,8 +90,8 @@ export async function getAllUsers() {
 
 export async function checkCurrentUser(username) {
   try {
-    const response = await axios.post('/api/users', {
-      username: username
+    const response = await axios.post("/api/users", {
+      username: username,
     });
     return response;
   } catch (error) {
