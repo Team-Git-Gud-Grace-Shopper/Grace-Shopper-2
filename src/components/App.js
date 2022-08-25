@@ -61,7 +61,6 @@ const App = () => {
     if (authenticated){
       getCart(currentUser.id)
       .then((result) => {
-        console.log( "This is the useeffect call result: " + result.data);
         setCartList(result.data);
         sessionStorage.setItem('cart', JSON.stringify(result.data));
       });
@@ -70,7 +69,6 @@ const App = () => {
       setCartList(JSON.parse(sessionStorage.cart))
     }
   }, [authenticated, currentUser])
-console.log(cartList)
 
   return (
     <BrowserRouter>
