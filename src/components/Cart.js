@@ -1,6 +1,6 @@
 import session from "express-session";
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useHistory, NavLink } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { addItemToCart, emptyCart, getCart, getSingleProduct, removeItemFromCart } from "../axios-services";
 import "../style/Cart.css";
 
@@ -87,7 +87,7 @@ const Cart = ({authenticated, currentUser, cartList, setCartList}) => {
       )) : <h3>Your cart is empty! Get back to shopping!</h3>}
     </div>
     <div className="cart-total">
-          <button className="checkout-btn" onClick={handleCheckout}><NavLink to="/checkout" activeClassName="checkout-link">PROCEED TO CHECKOUT</NavLink></button>
+          <button className="checkout-btn" onClick={handleCheckout}><Link to="/checkout" activeClassName="checkout-link">PROCEED TO CHECKOUT</Link></button>
       </div>
     </Fragment> 
   );

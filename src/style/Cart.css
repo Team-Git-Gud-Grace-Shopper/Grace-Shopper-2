@@ -39,7 +39,7 @@ h3 {
   }
   
   .listing-photo {
-    height: 20vh;
+    height: 20vh auto;
     width: 25vh;
     border: solid black 2px;
   }

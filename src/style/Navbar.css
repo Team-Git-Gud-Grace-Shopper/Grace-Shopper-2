@@ -31,6 +31,7 @@
   #navbar > button {
     height: 32px;
     width: 100px;
+    font-size: 20px;
     
   }
   
@@ -52,8 +53,8 @@
     display: block;
     width: 100px;
     /* align-items: center; */
-    position: absolute;
-    right: 12em;
+    position: fixed;
+    right: 19em;
     padding: 5px;
     /* flex-direction: column; */
     border: solid black 2px;
@@ -65,22 +66,13 @@
     width: 100px;
     color: black;
     /* align-items: center; */
-    position: absolute;
-    right: 285px;
+    position: fixed;
+    right: 27em;
     padding: 5px;
     flex-direction: column;
     border: solid black 2px;
     background-color: wheat;
+    
   }
   
-  /* #menu-dropdown {
-    display: flex;
-    width: 100px;
-    align-items: center;
-    position: absolute;
-    right: 100px;
-    padding: 5px;
-    flex-direction: column;
-    border: solid black 2px;
-  } */
   

@@ -9,9 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
-  /* background: url(https://i.pinimg.com/originals/4e/94/7a/4e947afe00fb849dd5796dcf5f63d9e6.jpg) center center/cover no-repeat; */
-  
+  justify-content: center;  
   
 }
 
@@ -32,12 +30,6 @@
   width: 30vh;
   border: solid black 2px;
 }
-
-/* .listingtitle {
-  margin: 0;
-  display: block;
-  
-} */
 
 
 .listingprice {

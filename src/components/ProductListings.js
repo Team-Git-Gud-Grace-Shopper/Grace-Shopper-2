@@ -29,7 +29,7 @@ const ProductListings = ({ productList, cartList, setCartList, authenticated, cu
       {productList.map((product) => (
         <div className="listing" key={product.id}>
           <img className="listing-photo" src={product.image} alt="?"></img>
-          <h3 className="listingtitle">{product.title}</h3>
+          <p className="listingtitle">{product.title}</p>
           <span className="listingprice">${product.price}</span>
           <input type="number" min='0' defaultValue='0'></input>
           <button className="product-btn" id={product.id} onClick={handleAddItem}>Add to cart</button>
