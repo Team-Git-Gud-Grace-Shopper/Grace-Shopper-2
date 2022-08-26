@@ -48,7 +48,7 @@ const Login = ({setAuthenticated, currentUser, setCurrentUser, setCartList}) => 
                     <input id="email" placeholder="Email Address"></input>
                     <input id="username" placeholder="New Username"></input>
                     <input id="password" type="password" placeholder="New Password"></input>
-                    <input id="confirm-password" placeholder="Confirm Password"></input>
+                    <input id="confirm-password" type='password' placeholder="Confirm Password"></input>
                     <button onClick={handleRegister}>Create Account</button>
                     <span id='register-login' onClick={handleClick}>Already have an account? Log in</span>
                 </Fragment>:
