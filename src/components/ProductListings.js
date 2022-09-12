@@ -40,10 +40,10 @@ const ProductListings = ({ productList, setProductList, cartList, setCartList, a
           <button className="product-btn" id={product.id} onClick={handleAddItem}>Add to cart</button>
           {admin?
             <Fragment>
-              <button className="product-btn" onClick={() => history.push(`/products/${product.id}`)}>Edit/view product details</button>
+              <button className="product-btn" onClick={() => history.push(`/products/${product.id}`)}>Edit product details</button>
               <button id={product.id} onClick={handleRemoveProduct}>Remove product</button>
             </Fragment>:
-            <button className="product-btn" onClick={() => history.push(`/products/${product.id}`)}>View product details</button>
+            <button className="product-btn" onClick={() => history.push(`/products/${product.id}`)}>Details</button>
           }
         </div>
       ))}

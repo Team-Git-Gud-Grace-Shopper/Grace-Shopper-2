@@ -69,16 +69,6 @@ const App = () => {
       />
       <Switch>
         <Route exact path="/">
-          <div className="app-container">
-            {authenticated ? (
-              <p className="home-title">
-                Welcome to camelCases, {currentUser.username}!
-              </p>
-            ) : (
-              <p className="home-title">Welcome to camelCases!</p>
-            )}
-            {admin ? <Link to="/createnew">Create new product</Link> : null}
-          </div>
           <ProductListings
             productList={productList}
             setProductList={setProductList}

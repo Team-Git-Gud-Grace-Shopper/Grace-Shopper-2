@@ -131,7 +131,7 @@ const Cart = ({ authenticated, currentUser, cartList, setCartList }) => {
                 id={item.id}
                 onClick={handleRemoveAll}
               >
-                Remove ALL from cart
+                Remove ALL
               </button>
             </div>
           ))
