@@ -2,15 +2,24 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, productList, setAdmin}) => {
+const Navbar = ({authenticated, setAuthenticated, setCurrentUser, cartList, setCartList, productList, setAdmin}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
     event.preventDefault();
-    if (dropDown === event.target.id) {
-      setDropDown("none");
-    } else {
-      setDropDown(event.target.id);
+    if (event.target.id){
+      if (dropDown === event.target.id) {
+        setDropDown("none");
+      } else {
+        setDropDown(event.target.id);
+      }
+    }
+    else {
+      if (dropDown === event.target.parentNode.id) {
+        setDropDown("none");
+      } else {
+        setDropDown(event.target.parentNode.id);
+      }
     }
   };
 
@@ -41,7 +50,6 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
           <div id="profile-dropdown">
             {authenticated?
               <Fragment>
-                
                 <Link to="/login" onClick={handleLogOut}>Logout</Link>
               </Fragment>:
               <Link to="/login" onClick={resetDropDown}>Login</Link>
@@ -58,7 +66,6 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
   };
 
   const handleSearch = event => {
-    event.preventDefault();
     let input = document.getElementById('searchbar').value.toLowerCase();
     let checkListings = document.getElementsByClassName('listing');
     for (let i = 0; i < productList.length; i++){
@@ -77,11 +84,11 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, setCartList, p
         <Link to="/" id="logo" onClick={resetDropDown}>
           camelCases
         </Link>
-        <input id="searchbar" placeholder="Search..."></input>
-        <button id="search-button" onClick={handleSearch}>Search</button>
-        <button className="navbar-button" id="cart" onClick={handleClick}>
-          Cart
-        </button>
+        <input id="searchbar" placeholder="Search..." onChange={handleSearch}></input>
+        <div className="navbar-button" id="cart" onClick={handleClick}>
+          <span onClick={handleClick}>({cartList.length})</span>
+          <span onClick={handleClick} className="material-symbols-outlined">shopping_cart</span>
+        </div>
         <button className="navbar-button" id="profile" onClick={handleClick}>
           Login
         </button>

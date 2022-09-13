@@ -63,6 +63,7 @@ const App = () => {
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
         setCurrentUser={setCurrentUser}
+        cartList={cartList}
         setCartList={setCartList}
         productList={productList}
         setAdmin={setAdmin}
