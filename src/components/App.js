@@ -62,6 +62,7 @@ const App = () => {
       <Navbar
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
+        currentUser={currentUser}
         setCurrentUser={setCurrentUser}
         cartList={cartList}
         setCartList={setCartList}

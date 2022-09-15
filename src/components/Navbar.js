@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
-const Navbar = ({authenticated, setAuthenticated, setCurrentUser, cartList, setCartList, productList, setAdmin}) => {
+const Navbar = ({authenticated, setAuthenticated, currentUser, setCurrentUser, cartList, setCartList, productList, setAdmin}) => {
   const [dropDown, setDropDown] = useState("none");
 
   const handleClick = (event) => {
@@ -50,9 +50,10 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, cartList, setC
           <div id="profile-dropdown">
             {authenticated?
               <Fragment>
-                <Link to="/login" onClick={handleLogOut}>Logout</Link>
+                <i>Welcome {currentUser.username}!</i>
+                <Link to="/login" onClick={handleLogOut} id="login-link" >Logout</Link>
               </Fragment>:
-              <Link to="/login" onClick={resetDropDown}>Login</Link>
+              <Link to="/login" onClick={resetDropDown} id="logout-link">Login</Link>
             }
           </div>
         );
@@ -85,13 +86,13 @@ const Navbar = ({authenticated, setAuthenticated, setCurrentUser, cartList, setC
           camelCases
         </Link>
         <input id="searchbar" placeholder="Search..." onChange={handleSearch}></input>
-        <div className="navbar-button" id="cart" onClick={handleClick}>
-          <span onClick={handleClick}>({cartList.length})</span>
-          <span onClick={handleClick} className="material-symbols-outlined">shopping_cart</span>
-        </div>
-        <button className="navbar-button" id="profile" onClick={handleClick}>
-          Login
-        </button>
+        <Link to="/cart" className="navbar-button" id="cart">
+          <Link to="/cart">({cartList.length})</Link>
+          <Link to="/cart" className="material-symbols-outlined">shopping_cart</Link>
+        </Link>
+        <span className="material-symbols-outlined" onClick={handleClick} id="profile" >
+          account_circle
+        </span>
       </div>
       {renderDropDown()}
     </Fragment>

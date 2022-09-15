@@ -141,6 +141,18 @@ async function populateInitialData() {
       image:
         "https://hooraymag.com/wp-content/uploads/2017/05/Cactus-Cup-Cakes_Desert-Desserts_02.jpg",
     });
+    const product11 = await Products.createProduct({
+      title: "Father and Son special",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc magna, hendrerit at nisl quis, tincidunt finibus justo. Integer sollicitudin cursus interdum. Duis posuere scelerisque dolor at mollis. Nam commodo leo at odio condimentum egestas. Nunc vulputate luctus placerat. Nunc pulvinar, purus vitae tristique commodo, nisl turpis suscipit metus, vitae faucibus orci justo gravida libero. Suspendisse potenti. Proin sed eros elit. Vivamus porttitor, ipsum vitae mattis vehicula, eros odio imperdiet enim, eu tristique neque felis a nisi. Aliquam at dapibus leo. Nam rutrum nisl arcu.",
+      price: "19.99",
+      image: "https://www.foodsafetynews.com/files/2020/09/Camel.jpg",
+    });
+    const product12 = await Products.createProduct({
+      title: "Happy Camel",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc magna, hendrerit at nisl quis, tincidunt finibus justo. Integer sollicitudin cursus interdum. Duis posuere scelerisque dolor at mollis. Nam commodo leo at odio condimentum egestas. Nunc vulputate luctus placerat. Nunc pulvinar, purus vitae tristique commodo, nisl turpis suscipit metus, vitae faucibus orci justo gravida libero. Suspendisse potenti. Proin sed eros elit. Vivamus porttitor, ipsum vitae mattis vehicula, eros odio imperdiet enim, eu tristique neque felis a nisi. Aliquam at dapibus leo. Nam rutrum nisl arcu.",
+      price: "49.99",
+      image: "https://wallpaperaccess.com/full/1343933.jpg",
+    });
   } catch (error) {
     throw error;
   }
