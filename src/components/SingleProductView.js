@@ -11,6 +11,7 @@ const SingleProductView = ({ productList, admin, setProductList }) => {
   useEffect(() => {
     const findSingleProduct = () => {
       let currentSingleProduct = productList.find((product) => {
+        // eslint-disable-next-line
         return product.id == id;
       });
       setSingleProduct(currentSingleProduct);
