@@ -108,7 +108,7 @@ export async function register(newUser) {
     });
     return response;
   } catch (error) {
-    throw error;
+    throw new Error("User already exists");
   }
 }
 

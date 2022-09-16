@@ -44,5 +44,24 @@ h1 {
   background-color: red;
   color: white;
   font-size: 15px;
-  border-radius: 5px;
+  padding: 2px;
+}
+
+#back-button {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  display: inline;
+  margin-top: 5px;
+  margin-left: 10px;
+  background-color: red;
+  color: white;
+  font-size: 15px;
+  padding: 2px;
+  margin: 0 auto;
+}
+
+#back-button:hover {background-color: #9b3838}
+
+#back-button:active {
+  background-color: #8e3e3e;
+  transform: translateY(2px);
 }

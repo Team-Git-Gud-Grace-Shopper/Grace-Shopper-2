@@ -1,9 +1,12 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { addItemToCart, emptyCart, getSingleProduct } from "../axios-services";
 import "../style/Cart.css";
 
 const Cart = ({ authenticated, currentUser, cartList, setCartList }) => {
+  const history = useHistory();
+  const [checkout, setCheckout] = useState(false);
+
   const handleRemoveAll = async (event) => {
     const id = JSON.parse(event.target.id);
     const arr = cartList.filter((item) => item.id !== id);
@@ -18,13 +21,12 @@ const Cart = ({ authenticated, currentUser, cartList, setCartList }) => {
   };
 
   const handleCheckout = async (event) => {
-    const arr = cartList;
-    const itemToRemove = getSingleProduct(event.target.id);
-    arr.splice(itemToRemove);
-    sessionStorage.removeItem("cart", JSON.stringify(arr));
+    sessionStorage.removeItem("cart");
     if (authenticated) {
       await emptyCart();
     }
+    setCartList([]);
+    setCheckout(true);
   };
 
   const handleChange = async (event) => {
@@ -113,40 +115,55 @@ const Cart = ({ authenticated, currentUser, cartList, setCartList }) => {
   return (
     <Fragment>
       <div className="cartProducts">
-        {cartList.length ? (
-          mapArr.map((item) => (
-            <div className="cart-listing" key={item.id}>
-              <img className="listing-photo" src={item.image} alt="?"></img>
-              <span className="listingtitle">{item.title}</span>
-              <span className="listingprice">{item.price}</span>
-              <input
-                id={item.id}
-                type="number"
-                min="0"
-                defaultValue={renderQuantity(item.id)}
-                onChange={handleChange}
-              ></input>
-              <button
-                className="single-product-btn"
-                id={item.id}
-                onClick={handleRemoveAll}
-              >
-                Remove ALL
-              </button>
-            </div>
-          ))
-        ) : (
-          <h3>Your cart is empty! Get back to shopping!</h3>
-        )}
+        {checkout ?
+          <div id="checkout-screen">
+            <img
+              className="thankyou"
+              src="https://media.istockphoto.com/vectors/shopartbanner-copy-vector-id862205352?k=20&m=862205352&s=612x612&w=0&h=A8d92h4n8YouiQwaiKM3w2z-BuD_IwRfXgBYquhFfo4="
+              alt="Thank you for your purchase!"
+            />
+            <button id="cart-back" onClick={() => history.push(`/`)}>Back</button>
+          </div>:
+          cartList.length ?
+            (
+              mapArr.map((item) => (
+                <div className="cart-listing" key={item.id}>
+                  <img className="listing-photo" src={item.image} alt="?"></img>
+                  <span className="listingtitle">{item.title}</span>
+                  <span className="listingprice">{item.price}</span>
+                  <input
+                    id={item.id}
+                    type="number"
+                    min="0"
+                    defaultValue={renderQuantity(item.id)}
+                    onChange={handleChange}
+                  ></input>
+                  <button
+                    className="single-product-btn"
+                    id={item.id}
+                    onClick={handleRemoveAll}
+                  >
+                    Remove ALL
+                  </button>
+                </div>
+              ))
+            ) :
+            (
+              <div id="empty-cart">
+                <h3>Your cart is empty! Get back to shopping!</h3>
+                <button id="cart-back" onClick={() => history.push(`/`)}>Back</button>
+              </div>
+            )}
       </div>
-      {cartList.length ? (
+      {cartList.length ?
+        (
         <div className="cart-total">
           <div className="cart-total-number">Total Cost: {renderTotal().toFixed(2)}</div>
           <button className="checkout-btn" onClick={handleCheckout}>
-            <Link to="/checkout">PROCEED TO CHECKOUT</Link>
+            PROCEED TO CHECKOUT
           </button>
         </div>
-      ) : null}
+        ) : null}
     </Fragment>
   );
 };

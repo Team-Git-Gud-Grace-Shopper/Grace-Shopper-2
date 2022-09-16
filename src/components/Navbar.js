@@ -3,28 +3,16 @@ import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 
 const Navbar = ({authenticated, setAuthenticated, currentUser, setCurrentUser, cartList, setCartList, productList, setAdmin}) => {
-  const [dropDown, setDropDown] = useState("none");
+  const [dropDown, setDropDown] = useState(false);
+  const [searchValue, setSearchValue] = useState(false);
 
   const handleClick = (event) => {
     event.preventDefault();
-    if (event.target.id){
-      if (dropDown === event.target.id) {
-        setDropDown("none");
-      } else {
-        setDropDown(event.target.id);
-      }
-    }
-    else {
-      if (dropDown === event.target.parentNode.id) {
-        setDropDown("none");
-      } else {
-        setDropDown(event.target.parentNode.id);
-      }
-    }
+    setDropDown(!dropDown);
   };
 
   const resetDropDown = () => {
-    setDropDown('none');
+    setDropDown(false);
   }
 
   const handleLogOut = (event) => {
@@ -36,38 +24,17 @@ const Navbar = ({authenticated, setAuthenticated, currentUser, setCurrentUser, c
     setAuthenticated(false);
     setAdmin(false);
     setCartList([]);
-    setDropDown('none');
+    setDropDown(false);
   }
   
-  const renderDropDown = () => {
-    switch (dropDown) {
-      default:
-        return null;
-      case "null":
-        return null;
-      case "profile":
-        return (
-          <div id="profile-dropdown">
-            {authenticated?
-              <Fragment>
-                <i>Welcome {currentUser.username}!</i>
-                <Link to="/login" onClick={handleLogOut} id="login-link" >Logout</Link>
-              </Fragment>:
-              <Link to="/login" onClick={resetDropDown} id="logout-link">Login</Link>
-            }
-          </div>
-        );
-      case "cart":
-        return (
-          <div id="cart-dropdown">
-            <Link to="/cart" onClick={resetDropDown}>View Cart</Link>
-          </div>
-        );
-    }
-  };
-
   const handleSearch = event => {
     let input = document.getElementById('searchbar').value.toLowerCase();
+    if (input){
+      setSearchValue(true);
+    }
+    else {
+      setSearchValue(false);
+    }
     let checkListings = document.getElementsByClassName('listing');
     for (let i = 0; i < productList.length; i++){
         if (!productList[i].title.toLowerCase().includes(input)){
@@ -79,6 +46,17 @@ const Navbar = ({authenticated, setAuthenticated, currentUser, setCurrentUser, c
     }
 }
 
+const handleX = event => {
+  event.preventDefault();
+  let input = document.getElementById('searchbar');
+  input.value = null;
+  let checkListings = document.getElementsByClassName('listing');
+  for (let i = 0; i < productList.length; i++){
+    checkListings[i].style.display = 'block';
+  }
+  setSearchValue(false);
+}
+
   return (
     <Fragment>
       <div id="navbar">
@@ -86,15 +64,32 @@ const Navbar = ({authenticated, setAuthenticated, currentUser, setCurrentUser, c
           camelCases
         </Link>
         <input id="searchbar" placeholder="Search..." onChange={handleSearch}></input>
-        <Link to="/cart" className="navbar-button" id="cart">
-          <Link to="/cart">({cartList.length})</Link>
-          <Link to="/cart" className="material-symbols-outlined">shopping_cart</Link>
-        </Link>
-        <span className="material-symbols-outlined" onClick={handleClick} id="profile" >
-          account_circle
-        </span>
+        {searchValue ?
+          <span id="x-button" className="material-symbols-outlined" onClick={handleX}>close</span>:
+          null
+        }
+        <div className="navbar-button" id="cart">
+          <Link to="/cart" onClick={resetDropDown}>({cartList.length})</Link>
+          <Link to="/cart" className="material-symbols-outlined" onClick={resetDropDown}>shopping_cart</Link>
+        </div>
+        <div id="profile-tab">
+            <span className="material-symbols-outlined" onClick={handleClick} id="profile" >
+              account_circle
+            </span>
+            {currentUser?
+              <b id="username-display" onClick={handleClick}>{currentUser.username}</b>:
+              null
+            }
+          {dropDown?
+            authenticated?
+              <div id="logout-link">
+                <Link to="/login" onClick={handleLogOut}>Logout</Link>
+              </div>:
+              <Link to="/login" onClick={resetDropDown} id="logout-link">Login</Link>:
+            null
+          }
+        </div>
       </div>
-      {renderDropDown()}
     </Fragment>
   );
 };
