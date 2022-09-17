@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { checkCurrentUser, getCart, getProducts } from "../axios-services";
 import "../style/App.css";
@@ -62,23 +62,15 @@ const App = () => {
       <Navbar
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
+        currentUser={currentUser}
         setCurrentUser={setCurrentUser}
+        cartList={cartList}
         setCartList={setCartList}
         productList={productList}
         setAdmin={setAdmin}
       />
       <Switch>
         <Route exact path="/">
-          <div className="app-container">
-            {authenticated ? (
-              <p className="home-title">
-                Welcome to camelCases, {currentUser.username}!
-              </p>
-            ) : (
-              <p className="home-title">Welcome to camelCases!</p>
-            )}
-            {admin ? <Link to="/createnew">Create new product</Link> : null}
-          </div>
           <ProductListings
             productList={productList}
             setProductList={setProductList}

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "../style/SingleProduct.css";
 import { getProducts, updateProduct } from "../axios-services";
 
 const SingleProductView = ({ productList, admin, setProductList }) => {
+  const history = useHistory();
   const { id } = useParams();
   const [singleProduct, setSingleProduct] = useState({});
 
   useEffect(() => {
     const findSingleProduct = () => {
       let currentSingleProduct = productList.find((product) => {
+        // eslint-disable-next-line
         return product.id == id;
       });
       setSingleProduct(currentSingleProduct);
@@ -74,6 +76,7 @@ const SingleProductView = ({ productList, admin, setProductList }) => {
               <h1>{singleProduct.title}</h1>
               <h2>{singleProduct.description}</h2>
               <h3 className="single-product-price">${singleProduct.price}</h3>
+              <button id="back-button" onClick={() => history.push(`/`)}>Back</button>
             </div>  
           </div>
         ) : (
